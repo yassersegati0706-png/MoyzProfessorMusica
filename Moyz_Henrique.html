@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <!--
+    ================================================================
+     VERSÃO "AURORA" — mesma página do Moyz, com o design system Huly
+    ================================================================
+     - Procure (Ctrl+F) por "EDITAR:" para pular direto para cada ponto editável.
+     - Textos: altere só o que está ENTRE as tags. Não apague < >, aspas nem class.
+     - Imagens: ficam na pasta "img", ao lado deste arquivo. Troque o src="img/..."
+       com o nome idêntico (maiúsculas contam). Espaço no nome vira %20 no src.
+       Mova este arquivo e a pasta "img" sempre juntos.
+     - Ícones: Font Awesome (https://fontawesome.com/icons).
+     - Cores: bloco tailwind.config abaixo. O sistema só tem DUAS cores de
+       destaque: iris (azul, ação principal) e ember (coral, detalhes).
+       Não adicione uma terceira — é a regra principal do design.
+    ================================================================
+    -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#090a0c">
+    <!-- EDITAR: título da aba e do Google -->
+    <title>Moyz Henrique | Aulas de Guitarra, Violão e Baixo</title>
+    <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        /* EDITAR: paleta (tokens do DESIGN.md) */
+                        void:     '#090a0c', /* fundo das faixas escuras */
+                        card:     '#111111', /* cartões escuros */
+                        edge:     '#4a4b50', /* bordas finas no escuro */
+                        smoke:    '#95979e', /* texto secundário / ícones */
+                        ash:      '#a9a9aa', /* texto de apoio no escuro */
+                        frost:    '#d1d1d1', /* bordas no claro */
+                        mist:     '#a8a8ae', /* faixa cinza principal (tom 4 de 10) */
+                        linen:    '#a0a0a7', /* faixa cinza secundária (um tom mais escuro) */
+                        ink:      '#050506', /* títulos no claro */
+                        obsidian: '#303236', /* texto corrido no claro */
+                        iris:     '#5683da', /* AÇÃO PRINCIPAL (botões de WhatsApp) */
+                        ember:    '#ff8964', /* destaque quente (selos, checks, brilhos) */
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+                        display: ['Sora', 'Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sora:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- NÃO PRECISA EDITAR: estilos que o Tailwind não cobre (feixe de luz, tipografia display, botões pílula) -->
+    <style>
+        /* Responsividade: links do menu não ficam escondidos atrás do topo fixo,
+           nada vaza para os lados e o celular não aumenta o texto sozinho */
+        html { scroll-padding-top: 80px; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+        html, body { overflow-x: clip; }
+        body { font-size: 15px; letter-spacing: -0.01em; -webkit-tap-highlight-color: transparent; }
+        h1, h2, h3, p { overflow-wrap: break-word; }
+
+        /* Altura cheia do hero que respeita a barra de endereço do celular */
+        .hero-full { min-height: 100vh; min-height: 100svh; }
+
+        /* Tipografia display (Sora no lugar da Esbuild). Nunca abaixo de 28px. */
+        .t-display { font-family: 'Sora', 'Inter', sans-serif; font-weight: 500; font-size: clamp(40px, 11vw, 84px); line-height: .95; letter-spacing: -0.05em; }
+        .t-section { font-family: 'Sora', 'Inter', sans-serif; font-weight: 500; font-size: clamp(32px, 8vw, 64px); line-height: .98; letter-spacing: -0.045em; }
+        @media (min-width: 640px) {
+            .t-display { font-size: clamp(48px, 8.4vw, 84px); line-height: .92; }
+            .t-section { font-size: clamp(36px, 5.2vw, 64px); line-height: .95; }
+        }
+        .t-card    { font-family: 'Sora', 'Inter', sans-serif; font-weight: 500; font-size: 28px; line-height: 1; letter-spacing: -0.04em; }
+
+        /* Botões pílula */
+        .btn { display: inline-flex; align-items: center; justify-content: center; gap: .6rem; border-radius: 9999px; font-weight: 500; font-size: 15px; letter-spacing: -0.01em; text-align: center; min-height: 44px; transition: background-color .2s, box-shadow .25s, color .2s, border-color .2s; }
+        /* No celular os botões de ação ocupam a largura toda */
+        @media (max-width: 639px) { .btn-block-mobile { width: 100%; align-self: stretch; } }
+        .btn-iris  { background: #5683da; color: #fff; padding: 14px 28px; }
+        .btn-iris:hover { box-shadow: 0 0 0 1px rgba(255,255,255,.15) inset, 0 0 28px rgba(86,131,218,.6); }
+        .btn-ghost { border: 1px solid #4a4b50; color: #fff; padding: 13px 26px; }
+        .btn-ghost:hover { background: #fff; color: #090a0c; border-color: #fff; }
+        .btn-white { background: #fff; color: #090a0c; padding: 14px 28px; }
+        .btn-white:hover { background: #e5e5e7; }
+        /* Botões de marca (exceção à regra das duas cores: seguem a cor oficial de cada plataforma) */
+        .btn-youtube { background: #ff0000; color: #fff; padding: 14px 28px; }
+        /* Botões "Agendar aula" e "Quero começar agora" (vermelho suave, amigável) */
+        .btn-agendar { background: #eb5757; color: #fff; padding: 14px 28px; }
+        .btn-agendar:hover { background: #df4b4b; box-shadow: 0 0 28px rgba(235,87,87,.45); }
+        .btn-youtube:hover { background: #cc0000; box-shadow: 0 0 28px rgba(255,0,0,.45); }
+        .btn-whatsapp { background: #25d366; color: #fff; font-weight: 600; padding: 14px 28px; }
+        .btn-whatsapp:hover { background: #1ebe5a; box-shadow: 0 0 28px rgba(37,211,102,.5); }
+        .btn-spotify:hover { background: #1db954; color: #000; box-shadow: 0 0 28px rgba(29,185,84,.45); }
+        .btn:focus-visible, a:focus-visible, button:focus-visible, [tabindex]:focus-visible { outline: none; box-shadow: 0 0 0 4px rgba(255,255,255,.4); }
+
+        /* Selo/chip: cor da categoria a 12% no fundo */
+        .chip { display: inline-flex; align-items: center; gap: 6px; border-radius: 9999px; padding: 4px 12px; font-size: 12px; font-weight: 500; }
+        .chip-ember { color: #ff8964; background: rgba(255,137,100,.12); }
+        .chip-iris  { color: #7fa2e6; background: rgba(86,131,218,.14); }
+
+        /* O FEIXE AURORA (aparece só uma vez, no topo) — funciona como luz de palco sobre a foto */
+        .aurora { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+        .aurora .beam, .aurora .core, .aurora .sun { position: absolute; left: 70%; transform: translateX(-50%); }
+        .aurora .beam { top: -10%; width: 22%; height: 115%; filter: blur(48px); opacity: .55;
+            background: linear-gradient(180deg, rgba(86,131,218,0) 0%, rgba(86,131,218,.75) 30%, #ff8964 72%, #ffffff 100%); }
+        .aurora .core { top: -5%; width: 3.5%; height: 108%; filter: blur(14px); opacity: .6;
+            background: linear-gradient(180deg, rgba(86,131,218,0) 0%, #7fa2e6 35%, #ffb194 75%, #fff 100%); }
+        .aurora .sun  { bottom: -340px; width: 900px; height: 600px; border-radius: 50%;
+            background: radial-gradient(closest-side, rgba(255,170,129,.55), rgba(255,218,159,.18) 55%, transparent 100%); }
+        @media (max-width: 1023px) {
+            .aurora .beam, .aurora .core, .aurora .sun { left: 50%; }
+            .aurora .beam { width: 55%; opacity: .4; }
+        }
+        /* A luz "acende" ao carregar (além dela, só a apresentação da galeria se move sozinha) */
+        @keyframes lightOn { from { opacity: 0; transform: translateX(-50%) scaleY(.2); } }
+        .aurora .beam, .aurora .core { transform-origin: bottom; animation: lightOn 1.6s cubic-bezier(.2,.7,.2,1) both; }
+        .aurora .sun { animation: lightOn 1.6s .3s ease-out both; }
+        @media (prefers-reduced-motion: reduce) { .aurora * { animation: none !important; } }
+
+        /* Brilho radial no canto dos cartões */
+        .glow-ember, .glow-iris { position: relative; overflow: hidden; isolation: isolate; }
+        .glow-ember::before, .glow-iris::before { content: ""; position: absolute; z-index: -1; width: 360px; height: 360px; top: -180px; right: -160px; border-radius: 50%; }
+        .glow-ember::before { background: radial-gradient(closest-side, rgba(255,170,129,.35), rgba(255,218,159,.10) 60%, transparent); }
+        .glow-iris::before  { background: radial-gradient(closest-side, rgba(86,131,218,.40), rgba(86,131,218,.08) 60%, transparent); }
+
+        /* Contorno em degradê iris → ember (decoração principal do sistema) */
+        .stroke-aurora { border: 1px solid transparent; background:
+            linear-gradient(#111111, #111111) padding-box,
+            linear-gradient(140deg, rgba(86,131,218,.9), rgba(74,75,80,.4) 45%, rgba(255,137,100,.9)) border-box; }
+
+        /* Apresentação automática da galeria: as fotos se sobrepõem e trocam com esmaecimento.
+           Sem zoom, para a foto aparecer sempre no tamanho real (nítida). */
+        .slide { position: absolute; inset: 0; margin: 0; opacity: 0; visibility: hidden; transition: opacity 1s ease, visibility 0s linear 1s; }
+        .slide.is-active { opacity: 1; visibility: visible; transition: opacity 1s ease; }
+        .slide img { position: relative; z-index: 1; filter: none !important; transform: none !important; transition: none !important; }
+        /* Fotos em pé aparecem inteiras (sem cortar nem ampliar); as laterais recebem a própria foto desfocada */
+        .slide.retrato img { object-fit: contain !important; }
+        .slide-fundo { position: absolute; inset: -24px; background-size: cover; background-position: center; filter: blur(22px) brightness(.5); }
+        .slide figcaption { z-index: 2; opacity: 0; transform: translateY(8px); transition: opacity .6s .4s, transform .6s .4s; }
+        .slide.is-active figcaption { opacity: 1; transform: none; }
+        #galeria-slider:focus-visible { outline: none; box-shadow: 0 0 0 4px rgba(255,255,255,.4); }
+
+        /* Indicadores: o ativo vira uma barrinha que enche durante o tempo da foto */
+        .dot { padding: 12px 3px; }
+        .dot span { display: block; position: relative; overflow: hidden; width: 8px; height: 8px; border-radius: 9999px; background: rgba(255,255,255,.25); transition: width .3s, background-color .3s; }
+        .dot:hover span { background: rgba(255,255,255,.5); }
+        .dot.is-active span { width: 36px; background: rgba(255,255,255,.25); }
+        .dot.is-active span::after { content: ""; position: absolute; inset: 0; background: #ff8964; transform-origin: left; animation: progressoFoto var(--tempo-foto, 5s) linear forwards; }
+        .is-paused .dot.is-active span::after { animation-play-state: paused; }
+        @keyframes progressoFoto { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+        @media (prefers-reduced-motion: reduce) {
+            .slide, .slide figcaption { transition: none !important; transform: none !important; }
+        }
+
+        /* Telas de toque não têm "passar o mouse": mostra as fotos já coloridas */
+        @media (hover: none) {
+            .grayscale { --tw-grayscale: grayscale(0) !important; filter: none !important; }
+        }
+
+        /* Celulares em pé: brilhos menores e espaçamentos mais enxutos */
+        @media (max-width: 639px) {
+            .glow-ember::before, .glow-iris::before { width: 260px; height: 260px; top: -130px; right: -120px; }
+            .aurora .sun { width: 600px; height: 420px; bottom: -240px; }
+        }
+
+        /* Celular deitado (pouca altura): o hero não força ocupar a tela inteira */
+        @media (max-height: 500px) and (orientation: landscape) {
+            .hero-full { min-height: auto; }
+        }
+    </style>
+</head>
+<body class="bg-void text-white font-sans antialiased selection:bg-iris selection:text-white">
+
+    <!-- ================= TOPO ================= -->
+    <header id="topo" class="fixed top-0 inset-x-0 z-50 transition-colors duration-300">
+        <div class="max-w-[1200px] mx-auto px-5 sm:px-8 h-[72px] flex items-center justify-between">
+            <!-- EDITAR: nome do logotipo -->
+            <a href="#" class="flex items-center gap-2.5 font-semibold tracking-tight text-[17px]">
+                <span class="w-8 h-8 rounded-full bg-white/10 border border-white/15 grid place-items-center text-[13px]"><i class="fa-solid fa-guitar"></i></span>
+                Moyz Henrique
+            </a>
+
+            <nav class="hidden md:flex items-center gap-7 text-[14px] text-white/80">
+                <!-- EDITAR: itens do menu (href="#..." igual ao id da seção) -->
+                <a href="#sobre" class="hover:text-white transition-colors">Sobre</a>
+                <a href="#metodo" class="hover:text-white transition-colors">O método</a>
+                <a href="#midia" class="hover:text-white transition-colors">Mídia e som</a>
+                <a href="#galeria" class="hover:text-white transition-colors">Galeria</a>
+            </nav>
+            <div class="hidden md:flex items-center gap-3">
+                <!-- EDITAR: botões do topo -->
+                <a href="https://www.instagram.com/moyzhenrique/" target="_blank" rel="noopener" class="btn btn-ghost !py-2 !px-5 !text-[14px]"><i class="fa-brands fa-instagram"></i> Instagram</a>
+                <a href="https://wa.me/556281853693?text=Olá%20Moyz,%20gostaria%20de%20saber%20mais%20sobre%20as%20aulas!" target="_blank" rel="noopener" class="btn btn-agendar !py-2.5 !px-5 !text-[14px]">Agendar aula</a>
+            </div>
+
+            <button id="menu-btn" class="md:hidden w-10 h-10 rounded-full border border-edge grid place-items-center text-white" aria-label="Abrir menu" aria-expanded="false">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- EDITAR: menu do celular (repita aqui o que mudar no menu acima) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-void/95 backdrop-blur-md border-b border-edge px-5 pt-2 pb-6 space-y-1 max-h-[calc(100vh-72px)] overflow-y-auto">
+            <a href="#sobre" class="block py-3 text-white/80">Sobre</a>
+            <a href="#metodo" class="block py-3 text-white/80">O método</a>
+            <a href="#midia" class="block py-3 text-white/80">Mídia e som</a>
+            <a href="#galeria" class="block py-3 text-white/80">Galeria</a>
+            <a href="https://wa.me/556281853693?text=Olá%20Moyz,%20gostaria%20de%20saber%20mais%20sobre%20as%20aulas!" target="_blank" rel="noopener" class="btn btn-agendar w-full mt-3"><i class="fa-brands fa-whatsapp"></i> Agendar aula</a>
+        </div>
+    </header>
+
+    <!-- ================= HERO: feixe aurora como luz de palco ================= -->
+    <section class="hero-full relative flex items-center pt-24 sm:pt-28 pb-16 sm:pb-20 overflow-hidden bg-void">
+        <div class="aurora" aria-hidden="true"><div class="beam"></div><div class="core"></div><div class="sun"></div></div>
+
+        <div class="relative z-10 max-w-[1200px] mx-auto px-5 sm:px-8 w-full grid grid-cols-1 lg:grid-cols-12 gap-10 sm:gap-14 items-center">
+            <div class="lg:col-span-7">
+                <!-- EDITAR: selo acima do título -->
+                <span class="chip chip-ember"><span class="w-1.5 h-1.5 rounded-full bg-ember"></span> Professor e músico profissional em Goiânia</span>
+
+                <!-- EDITAR: título principal -->
+                <h1 class="t-display mt-7">Domine a guitarra, o violão e o baixo.</h1>
+
+                <!-- EDITAR: texto de apresentação -->
+                <p class="mt-6 sm:mt-7 text-[16px] sm:text-[18px] leading-[1.55] text-ash max-w-[34rem]">
+                    Aulas particulares com <strong class="text-white font-medium">Moyz Henrique</strong>: anos de estrada, bandas de metal extremo e vivência de palco levados direto para a sua evolução.
+                </p>
+
+                <div class="mt-9 flex flex-col sm:flex-row gap-3">
+                    <!-- EDITAR: botão principal (troque href pelo link wa.me para abrir o WhatsApp direto) -->
+                    <a href="https://wa.me/556281853693?text=Olá%20Moyz,%20gostaria%20de%20saber%20mais%20sobre%20as%20aulas!" target="_blank" rel="noopener" class="btn btn-whatsapp"><i class="fa-brands fa-whatsapp text-lg"></i> Agendar aula pelo WhatsApp</a>
+                    <!-- EDITAR: Instagram -->
+                    <a href="https://www.instagram.com/moyzhenrique/" target="_blank" rel="noopener" class="btn btn-ghost"><i class="fa-brands fa-instagram"></i> @moyzhenrique</a>
+                </div>
+
+                <!-- EDITAR: diferenciais -->
+                <ul class="mt-8 sm:mt-10 flex flex-wrap gap-x-7 gap-y-3 text-[14px] text-smoke">
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-ember text-xs"></i> Do iniciante ao avançado</li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-ember text-xs"></i> Presencial e online</li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-ember text-xs"></i> Foco prático</li>
+                </ul>
+            </div>
+
+            <!-- Foto do professor, "flutuando" sobre o feixe (como o print de produto no Huly) -->
+            <div class="lg:col-span-5 flex justify-center lg:justify-end">
+                <figure class="w-full max-w-[340px] sm:max-w-[400px]">
+                    <!-- EDITAR: FOTO PRINCIPAL (src). Ajuste o recorte com object-[center_XX%] -->
+                    <img src="img/MoyzDePerfil.jpg.jpeg" alt="Retrato de Moyz Henrique com sua guitarra" class="w-full aspect-[4/5] object-cover object-[center_20%] rounded-xl shadow-[0_6px_25px_rgba(0,0,0,.5)] border border-white/10">
+                    <figcaption class="mt-3 bg-card/80 backdrop-blur border border-edge rounded-xl p-5">
+                        <div class="flex items-center justify-between gap-3">
+                            <!-- EDITAR: nome e selo -->
+                            <span class="font-semibold text-[16px]">Moyz Henrique</span>
+                            <span class="chip chip-iris">Guitarrista</span>
+                        </div>
+                        <!-- EDITAR: mini biografia -->
+                        <p class="mt-2 text-[14px] leading-relaxed text-ash">Guitarrista profissional, compositor e integrante da banda <span class="text-white">Necropsy Room</span>.</p>
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= SOBRE (faixa CLARA) ================= -->
+    <section id="sobre" class="bg-mist text-ink py-16 sm:py-28">
+        <div class="max-w-[1200px] mx-auto px-5 sm:px-8">
+            <div class="grid lg:grid-cols-12 gap-5 sm:gap-8 items-end mb-10 sm:mb-14">
+                <!-- EDITAR: título e texto da seção Sobre -->
+                <h2 class="t-section lg:col-span-7">Experiência de estrada e música autêntica.</h2>
+                <p class="lg:col-span-5 text-[17px] leading-[1.55] text-obsidian">Um currículo construído nos palcos do rock underground e em anos dedicados ao ensino musical de alto nível.</p>
+            </div>
+
+            <!-- EDITAR: os 3 cartões (ícone, título e texto) -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <article class="glow-ember bg-card text-white border border-edge rounded-xl p-6 sm:p-7 flex flex-col gap-8 sm:gap-10 sm:min-h-[300px]">
+                    <i class="fa-solid fa-guitar text-[20px] text-white/80"></i>
+                    <div class="mt-auto space-y-3">
+                        <h3 class="t-card">Várias bandas de rock</h3>
+                        <p class="text-[14px] leading-relaxed text-ash">Trajetória em bandas nacionais e internacionais, com centenas de horas de palco, gravações de estúdio, turnês e festivais.</p>
+                    </div>
+                </article>
+                <article class="glow-iris bg-card text-white border border-edge rounded-xl p-6 sm:p-7 flex flex-col gap-8 sm:gap-10 sm:min-h-[300px]">
+                    <i class="fa-solid fa-music text-[20px] text-white/80"></i>
+                    <div class="mt-auto space-y-3">
+                        <h3 class="t-card">Trabalho autoral ativo</h3>
+                        <p class="text-[14px] leading-relaxed text-ash">Hoje na linha de frente da banda <span class="text-white">Necropsy Room</span>, produzindo e tocando música autoral pesada, técnica e visceral.</p>
+                    </div>
+                </article>
+                <article class="glow-ember bg-card text-white border border-edge rounded-xl p-6 sm:p-7 flex flex-col gap-8 sm:gap-10 sm:min-h-[300px]">
+                    <i class="fa-solid fa-graduation-cap text-[20px] text-white/80"></i>
+                    <div class="mt-auto space-y-3">
+                        <h3 class="t-card">Metodologia direta</h3>
+                        <p class="text-[14px] leading-relaxed text-ash">Foco no que importa: repertório, técnica limpa, improvisação, timbre e timing. Do zero ao solo complexo, no seu ritmo.</p>
+                    </div>
+                </article>
+            </div>
+
+            <!-- EDITAR: BLOCO DO DIPLOMA. O arquivo img/Diploma_Moyz.jpg aparece aqui E no modal mais abaixo: troque nos dois -->
+            <div id="diploma-card" class="glow-iris mt-4 bg-card text-white border border-edge rounded-[24px] sm:rounded-[30px] p-5 sm:p-10 grid grid-cols-1 lg:grid-cols-5 gap-8 sm:gap-10 items-center">
+                <div class="lg:col-span-2 space-y-5">
+                    <span class="chip chip-iris"><i class="fa-solid fa-award"></i> Formação acadêmica</span>
+                    <h3 class="font-display font-medium text-[26px] sm:text-[32px] leading-none tracking-[-0.045em]">Licenciado em Música pelo IFG</h3>
+                    <p class="text-[14px] leading-relaxed text-ash">
+                        Licenciatura em Música pelo <span class="text-white">Instituto Federal de Goiás</span>, Câmpus Goiânia, concluída em 2024. Formação pedagógica de nível superior somada à vivência de palco: didática de verdade, aplicada ao instrumento.
+                    </p>
+                    <button type="button" id="diploma-open" class="btn btn-ghost btn-block-mobile !py-2.5 !px-5 !text-[14px]"><i class="fa-solid fa-magnifying-glass-plus"></i> Ver diploma ampliado</button>
+                </div>
+                <div id="diploma-thumb" role="button" tabindex="0" aria-label="Ampliar diploma" class="lg:col-span-3 group relative rounded-xl overflow-hidden cursor-pointer border border-white/10 shadow-[0_6px_25px_rgba(0,0,0,.5)]">
+                    <img src="img/Diploma_Moyz.jpg" alt="Diploma de Licenciatura em Música do IFG concedido a Moisés Henrique Bernardes da Silva" loading="lazy" class="w-full h-auto grayscale group-hover:grayscale-0 group-hover:scale-[1.03] transition-all duration-500">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EDITAR: modal do diploma (mesmo src do bloco acima) -->
+    <div id="diploma-modal" class="hidden fixed inset-0 z-[60] bg-void/90 backdrop-blur-sm items-center justify-center p-4" role="dialog" aria-modal="true" aria-label="Diploma ampliado">
+        <button type="button" id="diploma-close" class="absolute top-[max(1rem,env(safe-area-inset-top))] right-4 z-10 w-12 h-12 rounded-full bg-card border border-edge text-white text-lg hover:bg-white hover:text-void transition-colors" aria-label="Fechar">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <img src="img/Diploma_Moyz.jpg" alt="Diploma de Licenciatura em Música do IFG" class="max-w-full max-h-[90vh] rounded-xl shadow-[0_6px_25px_rgba(0,0,0,.5)]">
+    </div>
+
+    <!-- ================= O MÉTODO (faixa ESCURA) ================= -->
+    <section id="metodo" class="bg-void py-16 sm:py-28">
+        <div class="max-w-[1200px] mx-auto px-5 sm:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+            <div class="lg:col-span-7">
+                <!-- EDITAR: título e texto da seção O Método -->
+                <h2 class="t-section">Os três pilares das cordas.</h2>
+                <p class="mt-5 sm:mt-6 text-[16px] sm:text-[17px] leading-[1.55] text-ash max-w-[36rem]">
+                    Seja para tocar seus riffs favoritos de rock e metal, criar linhas de baixo ou dominar o violão acústico, o método se adapta ao seu objetivo, com rigor técnico e didática moderna.
+                </p>
+
+                <!-- EDITAR: instrumentos (ícone, nome, descrição). Copie um <div class="py-6 ..."> inteiro para adicionar -->
+                <div class="mt-10 border-t border-edge">
+                    <div class="py-6 border-b border-edge grid grid-cols-[40px_1fr] gap-4">
+                        <i class="fa-solid fa-bolt text-white/70 mt-1.5"></i>
+                        <div>
+                            <h3 class="text-[20px] font-semibold tracking-tight">Guitarra <span class="text-smoke font-normal">base e solo</span></h3>
+                            <p class="mt-1 text-[14px] text-ash">Palhetada, bends, escalas, harmonia aplicada e timbres.</p>
+                        </div>
+                    </div>
+                    <div class="py-6 border-b border-edge grid grid-cols-[40px_1fr] gap-4">
+                        <i class="fa-solid fa-guitar text-white/70 mt-1.5"></i>
+                        <div>
+                            <h3 class="text-[20px] font-semibold tracking-tight">Baixo elétrico</h3>
+                            <p class="mt-1 text-[14px] text-ash">Groove, fingerstyle, slap, construção de linhas e peso rítmico.</p>
+                        </div>
+                    </div>
+                    <div class="py-6 border-b border-edge grid grid-cols-[40px_1fr] gap-4">
+                        <i class="fa-solid fa-music text-white/70 mt-1.5"></i>
+                        <div>
+                            <h3 class="text-[20px] font-semibold tracking-tight">Violão</h3>
+                            <p class="mt-1 text-[14px] text-ash">Ritmos populares, dedilhados, acompanhamento de voz e repertório variado.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EDITAR: "Para quem é o curso?" (cada <li> é um item) -->
+            <aside class="lg:col-span-5 lg:sticky lg:top-28 stroke-aurora rounded-[24px] sm:rounded-[30px] p-6 sm:p-10">
+                <h3 class="font-display font-medium text-[26px] sm:text-[32px] leading-none tracking-[-0.045em]">Para quem é</h3>
+                <ul class="mt-6 sm:mt-8 space-y-4 text-[15px] text-white/85">
+                    <li class="flex gap-3"><i class="fa-solid fa-circle-check text-ember mt-1"></i> Iniciantes que nunca pegaram em um instrumento.</li>
+                    <li class="flex gap-3"><i class="fa-solid fa-circle-check text-ember mt-1"></i> Intermediários que querem destravar a técnica.</li>
+                    <li class="flex gap-3"><i class="fa-solid fa-circle-check text-ember mt-1"></i> Músicos em busca de aperfeiçoamento em rock e metal.</li>
+                    <li class="flex gap-3"><i class="fa-solid fa-circle-check text-ember mt-1"></i> Alunos de todas as idades, com acompanhamento especializado.</li>
+                </ul>
+                <a href="#contato" class="btn btn-agendar w-full mt-8 sm:mt-10">Quero começar agora</a>
+            </aside>
+        </div>
+    </section>
+
+    <!-- ================= MÍDIA E SOM (faixa CLARA, tom linho) ================= -->
+    <section id="midia" class="bg-linen text-ink py-16 sm:py-28">
+        <div class="max-w-[1200px] mx-auto px-5 sm:px-8">
+            <div class="grid lg:grid-cols-12 gap-5 sm:gap-8 items-end mb-10 sm:mb-14">
+                <!-- EDITAR: título e texto da seção Mídia -->
+                <h2 class="t-section lg:col-span-7">Ouça o som do professor.</h2>
+                <p class="lg:col-span-5 text-[17px] leading-[1.55] text-obsidian">Confira o trabalho atual na banda <strong class="font-semibold text-ink">Necropsy Room</strong> e a música autoral mais recente.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <article class="glow-iris bg-card text-white border border-edge rounded-xl p-6 sm:p-8 flex flex-col gap-8 sm:gap-12 sm:min-h-[320px]">
+                    <i class="fa-brands fa-youtube text-[22px] text-white/80"></i>
+                    <div class="mt-auto space-y-3">
+                        <h3 class="t-card">Banda atual: Necropsy Room</h3>
+                        <p class="text-[14px] leading-relaxed text-ash">Clipes oficiais, apresentações ao vivo, ensaios e toda a técnica da banda, direto no canal do YouTube.</p>
+                    </div>
+                    <!-- EDITAR: link do YouTube -->
+                    <a href="https://www.youtube.com/@NecropsyRoom" target="_blank" rel="noopener" class="btn btn-youtube btn-block-mobile self-start"><i class="fa-brands fa-youtube"></i> Visitar o canal</a>
+                </article>
+                <article class="glow-ember bg-card text-white border border-edge rounded-xl p-6 sm:p-8 flex flex-col gap-8 sm:gap-12 sm:min-h-[320px]">
+                    <i class="fa-solid fa-compact-disc text-[22px] text-white/80"></i>
+                    <div class="mt-auto space-y-3">
+                        <h3 class="t-card">Música autoral em destaque</h3>
+                        <p class="text-[14px] leading-relaxed text-ash">A faixa que expressa a identidade musical, os timbres e as composições de Moyz Henrique.</p>
+                    </div>
+                    <!-- EDITAR: link da música autoral -->
+                    <a href="https://l1nk.dev/t7EyaFi" target="_blank" rel="noopener" class="btn btn-white btn-spotify btn-block-mobile self-start"><i class="fa-brands fa-spotify text-[17px]"></i> Ouvir a música</a>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= GALERIA (faixa ESCURA) ================= -->
+    <section id="galeria" class="bg-void py-16 sm:py-28">
+        <div class="max-w-[1200px] mx-auto px-5 sm:px-8">
+            <div class="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+            <div class="lg:col-span-5">
+                <!-- EDITAR: título e texto da Galeria -->
+                <h2 class="t-section">Momentos de aula e palco.</h2>
+                <p class="mt-5 sm:mt-6 text-[16px] sm:text-[17px] leading-[1.55] text-ash max-w-[30rem]">Um pouco da energia das aulas práticas e dos shows ao vivo pelo Brasil.</p>
+            </div>
+
+            <!-- EDITAR: COMO FUNCIONA A APRESENTAÇÃO DE FOTOS
+                 Cada <figure class="slide"> é uma foto: src (arquivo), alt (descrição),
+                 object-[center_XX%] (recorte: 0% topo, 100% base), .chip (categoria) e <p> (título).
+                 Copie um <figure class="slide"> inteiro para adicionar; apague para remover.
+                 Os indicadores embaixo, à direita, são criados sozinhos. O tempo de cada foto fica em --tempo-foto (logo abaixo). -->
+            <div id="galeria-show" class="lg:col-span-7 w-full max-w-[640px] mx-auto lg:max-w-none" style="--tempo-foto: 5s">
+            <div id="galeria-slider" tabindex="0" role="region" aria-roledescription="carrossel" aria-label="Fotos de aulas e palco (use as setas do teclado)" class="relative rounded-xl overflow-hidden border border-edge bg-card aspect-[4/3] shadow-[0_6px_25px_rgba(0,0,0,.5)]">
+                <!-- Nomes com espaço, acento ou parênteses: no src, espaço vira %20 e "ã" vira %C3%A3 -->
+                <figure class="slide">
+                    <img src="img/Aluno3.jpeg" alt="Moyz Henrique com aluno durante aula de guitarra" loading="lazy" class="w-full h-full object-cover object-[center_22%]">
+                    <figcaption class="absolute inset-x-3 bottom-3 bg-void/75 backdrop-blur border border-white/10 rounded-xl px-4 py-3 flex items-center justify-between gap-3">
+                        <p class="text-[14px] font-medium">Foco na técnica e na prática</p><span class="chip chip-ember shrink-0">Aulas</span>
+                    </figcaption>
+                </figure>
+                <figure class="slide">
+                    <img src="img/MoyzPalco.png" alt="Show ao vivo da Necropsy Room" loading="lazy" class="w-full h-full object-cover object-[center_25%]">
+                    <figcaption class="absolute inset-x-3 bottom-3 bg-void/75 backdrop-blur border border-white/10 rounded-xl px-4 py-3 flex items-center justify-between gap-3">
+                        <p class="text-[14px] font-medium">Necropsy Room no palco</p><span class="chip chip-iris shrink-0">Ao vivo</span>
+                    </figcaption>
+                </figure>
+                <figure class="slide">
+                    <img src="img/Aluno%20pequeno%20de%20guitarra.jpeg" alt="Aluno criança tocando guitarra durante a aula" loading="lazy" class="w-full h-full object-cover object-[center_45%]">
+                    <figcaption class="absolute inset-x-3 bottom-3 bg-void/75 backdrop-blur border border-white/10 rounded-xl px-4 py-3 flex items-center justify-between gap-3">
+                        <p class="text-[14px] font-medium">Pequeno grande guitarrista</p><span class="chip chip-ember shrink-0">Kids</span>
+                    </figcaption>
+                </figure>
+                <figure class="slide">
+                    <img src="img/Aluna%20de%20baixo.jpeg" alt="Aluna de baixo com Moyz Henrique no estúdio" loading="lazy" class="w-full h-full object-cover object-[center_40%]">
+                    <figcaption class="absolute inset-x-3 bottom-3 bg-void/75 backdrop-blur border border-white/10 rounded-xl px-4 py-3 flex items-center justify-between gap-3">
+                        <p class="text-[14px] font-medium">Groove desde a primeira aula</p><span class="chip chip-iris shrink-0">Baixo</span>
+                    </figcaption>
+                </figure>
+                <figure class="slide">
+                    <img src="img/aluno%20barbaro.jpeg" alt="Aluno e Moyz Henrique fazendo o sinal do rock no estúdio" loading="lazy" class="w-full h-full object-cover object-[center_30%]">
+                    <figcaption class="absolute inset-x-3 bottom-3 bg-void/75 backdrop-blur border border-white/10 rounded-xl px-4 py-3 flex items-center justify-between gap-3">
+                        <p class="text-[14px] font-medium">Parceria dentro e fora da aula</p><span class="chip chip-ember shrink-0">Rock</span>
+                    </figcaption>
+                </figure>
+                <figure class="slide">
+                    <img src="img/Aluno%20guitarra%20solando.jpeg" alt="Aluno solando na guitarra durante a aula" loading="lazy" class="w-full h-full object-cover object-[center_55%]">
+                    <figcaption class="absolute inset-x-3 bottom-3 bg-void/75 backdrop-blur border border-white/10 rounded-xl px-4 py-3 flex items-center justify-between gap-3">
+                        <p class="text-[14px] font-medium">Os primeiros solos saindo</p><span class="chip chip-iris shrink-0">Solo</span>
+                    </figcaption>
+                </figure>
+                <figure class="slide">
+                    <img src="img/aluno%20camisa%20iron.jpeg" alt="Aluno com camiseta do Iron Maiden ao lado de Moyz Henrique" loading="lazy" class="w-full h-full object-cover object-[center_18%]">
+                    <figcaption class="absolute inset-x-3 bottom-3 bg-void/75 backdrop-blur border border-white/10 rounded-xl px-4 py-3 flex items-center justify-between gap-3">
+                        <p class="text-[14px] font-medium">Clássicos do metal no repertório</p><span class="chip chip-ember shrink-0">Metal</span>
+                    </figcaption>
+                </figure>
+                <figure class="slide">
+                    <img src="img/Aluno%20guitarhero.jpeg" alt="Aluno tocando guitarra Flying V em pé" loading="lazy" class="w-full h-full object-cover object-[center_30%]">
+                    <figcaption class="absolute inset-x-3 bottom-3 bg-void/75 backdrop-blur border border-white/10 rounded-xl px-4 py-3 flex items-center justify-between gap-3">
+                        <p class="text-[14px] font-medium">Nunca é tarde para começar</p><span class="chip chip-iris shrink-0">Todas as idades</span>
+                    </figcaption>
+                </figure>
+                <figure class="slide">
+                    <img src="img/Aluno%20de%20baixo.jpeg" alt="Aluno tocando baixo elétrico no estúdio" loading="lazy" class="w-full h-full object-cover object-[center_45%]">
+                    <figcaption class="absolute inset-x-3 bottom-3 bg-void/75 backdrop-blur border border-white/10 rounded-xl px-4 py-3 flex items-center justify-between gap-3">
+                        <p class="text-[14px] font-medium">Linhas de baixo com peso</p><span class="chip chip-ember shrink-0">Baixo</span>
+                    </figcaption>
+                </figure>
+                <figure class="slide">
+                    <img src="img/Aluno%20paz%20e%20amor.jpeg" alt="Aluno criança com baixo ao lado de Moyz Henrique" loading="lazy" class="w-full h-full object-cover object-[center_35%]">
+                    <figcaption class="absolute inset-x-3 bottom-3 bg-void/75 backdrop-blur border border-white/10 rounded-xl px-4 py-3 flex items-center justify-between gap-3">
+                        <p class="text-[14px] font-medium">Paz, amor e muito rock</p><span class="chip chip-iris shrink-0">Kids</span>
+                    </figcaption>
+                </figure>
+                <figure class="slide">
+                    <img src="img/Aluno8.jpeg" alt="Moyz Henrique com alunos em aula em conjunto" loading="lazy" class="w-full h-full object-cover object-[center_35%]">
+                    <figcaption class="absolute inset-x-3 bottom-3 bg-void/75 backdrop-blur border border-white/10 rounded-xl px-4 py-3 flex items-center justify-between gap-3">
+                        <p class="text-[14px] font-medium">Aulas em conjunto</p><span class="chip chip-ember shrink-0">Evolução</span>
+                    </figcaption>
+                </figure>
+                <figure class="slide">
+                    <img src="img/Aluno%20de%20guitarra%20(Jo%C3%A3o).jpeg" alt="Aluno de guitarra João com Moyz Henrique" loading="lazy" class="w-full h-full object-cover object-[center_25%]">
+                    <figcaption class="absolute inset-x-3 bottom-3 bg-void/75 backdrop-blur border border-white/10 rounded-xl px-4 py-3 flex items-center justify-between gap-3">
+                        <p class="text-[14px] font-medium">Mais um riff dominado</p><span class="chip chip-iris shrink-0">Conquista</span>
+                    </figcaption>
+                </figure>
+                <figure class="slide">
+                    <img src="img/Aluno%20branco.jpeg" alt="Aluno sorrindo ao lado de Moyz Henrique no estúdio" loading="lazy" class="w-full h-full object-cover object-[center_30%]">
+                    <figcaption class="absolute inset-x-3 bottom-3 bg-void/75 backdrop-blur border border-white/10 rounded-xl px-4 py-3 flex items-center justify-between gap-3">
+                        <p class="text-[14px] font-medium">Sorriso de quem evoluiu</p><span class="chip chip-ember shrink-0">Resultado</span>
+                    </figcaption>
+                </figure>
+                <figure class="slide">
+                    <img src="img/Aluno%20de%20oculos.jpeg" alt="Aluno com guitarra ao lado de Moyz Henrique" loading="lazy" class="w-full h-full object-cover object-[center_20%]">
+                    <figcaption class="absolute inset-x-3 bottom-3 bg-void/75 backdrop-blur border border-white/10 rounded-xl px-4 py-3 flex items-center justify-between gap-3">
+                        <p class="text-[14px] font-medium">Do zero ao palco</p><span class="chip chip-iris shrink-0">Guitarra</span>
+                    </figcaption>
+                </figure>
+                <figure class="slide">
+                    <img src="img/equipamento%20dos%20alunos.png" alt="Equipamentos profissionais" loading="lazy" class="w-full h-full object-cover">
+                    <figcaption class="absolute inset-x-3 bottom-3 bg-void/75 backdrop-blur border border-white/10 rounded-xl px-4 py-3 flex items-center justify-between gap-3">
+                        <p class="text-[14px] font-medium">Equipamentos profissionais</p><span class="chip chip-ember shrink-0">Setup</span>
+                    </figcaption>
+                </figure>
+            </div>
+
+            <!-- Indicadores da apresentação (criados pelo script), alinhados à direita -->
+            <div class="mt-4 flex justify-end">
+                <div id="galeria-dots" class="flex items-center gap-1"></div>
+            </div>
+            </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= CONTATO ================= -->
+    <section id="contato" class="bg-void pb-16 sm:pb-28">
+        <div class="max-w-[1200px] mx-auto px-5 sm:px-8">
+            <div class="glow-ember stroke-aurora rounded-[24px] sm:rounded-[30px] px-5 py-12 sm:px-16 sm:py-20 text-center">
+                <span class="chip chip-ember"><i class="fa-brands fa-whatsapp"></i> Atendimento direto</span>
+                <!-- EDITAR: título e texto do contato -->
+                <h2 class="t-section mt-6 max-w-[14ch] mx-auto">Dê o próximo passo na sua evolução.</h2>
+                <p class="mt-5 sm:mt-6 text-[16px] sm:text-[17px] text-ash max-w-[32rem] mx-auto">Consulte os horários disponíveis para aulas presenciais ou online.</p>
+                <!-- EDITAR: LINK DO WHATSAPP — https://wa.me/55DDDNUMERO?text=MENSAGEM (espaços viram %20) -->
+                <a href="https://wa.me/556281853693?text=Olá%20Moyz,%20gostaria%20de%20saber%20mais%20sobre%20as%20aulas!" target="_blank" rel="noopener" class="btn btn-whatsapp btn-block-mobile mt-8 sm:mt-10 !px-9 !py-4 !text-[16px]">
+                    <i class="fa-brands fa-whatsapp text-xl"></i> Falar no WhatsApp
+                </a>
+                <!-- EDITAR: localização (link do Google Maps) -->
+                <div class="mt-6">
+                    <a href="https://share.google/9Ibyvvgp7ma3AxSEx" target="_blank" rel="noopener" class="group inline-flex items-center gap-2 text-[15px] text-ash hover:text-white transition-colors">
+                        <i class="fa-solid fa-location-dot text-ember"></i>
+                        <span>Goiânia (GO) · <span class="underline underline-offset-4 decoration-edge group-hover:decoration-white">ver no mapa</span></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-void border-t border-edge/60 pt-10 pb-[max(2.5rem,env(safe-area-inset-bottom))]">
+        <div class="max-w-[1200px] mx-auto px-5 sm:px-8">
+            <!-- EDITAR: contatos do rodapé (WhatsApp usa o mesmo link wa.me do botão de contato; localização é o link do Google Maps) -->
+            <ul class="flex flex-col sm:flex-row gap-4 sm:gap-10 text-[14px]">
+                <li>
+                    <a href="https://wa.me/556281853693?text=Olá%20Moyz,%20gostaria%20de%20saber%20mais%20sobre%20as%20aulas!" target="_blank" rel="noopener" class="group inline-flex items-center gap-3 text-white/85 hover:text-white transition-colors">
+                        <span class="w-9 h-9 rounded-full border border-edge grid place-items-center text-ember group-hover:border-ember transition-colors"><i class="fa-brands fa-whatsapp"></i></span>
+                        <span><span class="text-smoke">WhatsApp:</span> (62) 8185-3693</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://share.google/9Ibyvvgp7ma3AxSEx" target="_blank" rel="noopener" class="group inline-flex items-center gap-3 text-white/85 hover:text-white transition-colors">
+                        <span class="w-9 h-9 rounded-full border border-edge grid place-items-center text-ember group-hover:border-ember transition-colors"><i class="fa-solid fa-location-dot"></i></span>
+                        <span><span class="text-smoke">Localização:</span> Goiânia (GO) <span class="underline underline-offset-4 decoration-edge group-hover:decoration-white">ver no mapa</span></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.instagram.com/moyzhenrique/" target="_blank" rel="noopener" class="group inline-flex items-center gap-3 text-white/85 hover:text-white transition-colors">
+                        <span class="w-9 h-9 rounded-full border border-edge grid place-items-center text-ember group-hover:border-ember transition-colors"><i class="fa-brands fa-instagram"></i></span>
+                        <span><span class="text-smoke">Instagram:</span> @moyzhenrique</span>
+                    </a>
+                </li>
+            </ul>
+
+            <!-- EDITAR: rodapé -->
+            <div class="mt-8 pt-6 border-t border-edge/60 flex flex-col sm:flex-row gap-2 justify-between text-[13px] text-smoke">
+                <p>Moyz Henrique © 2026. Todos os direitos reservados.</p>
+                <p>Goiânia (GO), professor de guitarra, violão e baixo</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- NÃO PRECISA EDITAR: menu do celular, topo com desfoque ao rolar e modal do diploma.
+         Depende dos ids topo, menu-btn, mobile-menu, diploma-open, diploma-thumb, diploma-close e diploma-modal -->
+    <script>
+        const btn = document.getElementById('menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const icone = btn.querySelector('i');
+        const definirMenu = (aberto) => {
+            menu.classList.toggle('hidden', !aberto);
+            btn.setAttribute('aria-expanded', aberto);
+            btn.setAttribute('aria-label', aberto ? 'Fechar menu' : 'Abrir menu');
+            icone.classList.toggle('fa-bars', !aberto);
+            icone.classList.toggle('fa-xmark', aberto);
+            marcarTopo();
+        };
+        btn.addEventListener('click', () => definirMenu(menu.classList.contains('hidden')));
+        menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => definirMenu(false)));
+        // Fecha o menu ao virar o celular / aumentar a tela até o tamanho de desktop
+        window.matchMedia('(min-width: 768px)').addEventListener('change', (e) => { if (e.matches) definirMenu(false); });
+
+        // Topo transparente sobre o hero, com desfoque depois de rolar (ou com o menu aberto)
+        const topo = document.getElementById('topo');
+        const marcarTopo = () => {
+            const rolou = window.scrollY > 24 || !menu.classList.contains('hidden');
+            topo.classList.toggle('bg-void/80', rolou);
+            topo.classList.toggle('backdrop-blur-md', rolou);
+            topo.classList.toggle('border-b', rolou);
+            topo.classList.toggle('border-edge/60', rolou);
+        };
+        window.addEventListener('scroll', marcarTopo, { passive: true });
+        marcarTopo();
+
+        // Modal do diploma
+        const modal = document.getElementById('diploma-modal');
+        const abrir = () => { modal.classList.remove('hidden'); modal.classList.add('flex'); document.body.style.overflow = 'hidden'; };
+        const fechar = () => { modal.classList.add('hidden'); modal.classList.remove('flex'); document.body.style.overflow = ''; };
+        document.getElementById('diploma-open').addEventListener('click', abrir);
+        const thumb = document.getElementById('diploma-thumb');
+        thumb.addEventListener('click', abrir);
+        thumb.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); abrir(); } });
+        document.getElementById('diploma-close').addEventListener('click', fechar);
+        modal.addEventListener('click', (e) => { if (e.target === modal) fechar(); });
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { fechar(); definirMenu(false); } });
+
+        // Apresentação automática da galeria. A troca acontece quando a barrinha do indicador
+        // termina de encher, então pausar a barra também pausa a apresentação.
+        const show = document.getElementById('galeria-show');
+        const slider = document.getElementById('galeria-slider');
+        const slides = [...slider.querySelectorAll('.slide')];
+        let atual = 0;
+        // Cada foto ganha um fundo desfocado dela mesma; fotos em pé passam a aparecer inteiras
+        slides.forEach((s) => {
+            const img = s.querySelector('img');
+            const fundo = document.createElement('div');
+            fundo.className = 'slide-fundo';
+            fundo.setAttribute('aria-hidden', 'true');
+            fundo.style.backgroundImage = `url("${img.src}")`;
+            s.prepend(fundo);
+            const marcar = () => s.classList.toggle('retrato', img.naturalHeight > img.naturalWidth);
+            if (img.complete && img.naturalWidth) marcar(); else img.addEventListener('load', marcar);
+        });
+        const dots = slides.map((s, i) => {
+            const d = document.createElement('button');
+            d.type = 'button';
+            d.className = 'dot';
+            d.setAttribute('aria-label', `Ir para a foto ${i + 1}`);
+            d.appendChild(document.createElement('span'));
+            d.addEventListener('click', () => mostrar(i));
+            d.addEventListener('animationend', () => mostrar(atual + 1));
+            document.getElementById('galeria-dots').appendChild(d);
+            return d;
+        });
+        function mostrar(i) {
+            atual = (i + slides.length) % slides.length;
+            slides.forEach((s, k) => { s.classList.toggle('is-active', k === atual); s.setAttribute('aria-hidden', k !== atual); });
+            dots.forEach((d, k) => { d.classList.toggle('is-active', k === atual); d.setAttribute('aria-current', k === atual); });
+        }
+        // Pausa enquanto o mouse está sobre a foto (no computador)
+        slider.addEventListener('mouseenter', () => show.classList.add('is-paused'));
+        slider.addEventListener('mouseleave', () => show.classList.remove('is-paused'));
+        slider.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') mostrar(atual - 1);
+            if (e.key === 'ArrowRight') mostrar(atual + 1);
+        });
+        // Arrastar com o dedo no celular
+        let toqueX = null;
+        slider.addEventListener('touchstart', (e) => { toqueX = e.touches[0].clientX; }, { passive: true });
+        slider.addEventListener('touchend', (e) => {
+            if (toqueX === null) return;
+            const dx = e.changedTouches[0].clientX - toqueX;
+            if (Math.abs(dx) > 40) mostrar(atual + (dx < 0 ? 1 : -1));
+            toqueX = null;
+        });
+        mostrar(0);
+    </script>
+</body>
+</html>
