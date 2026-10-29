@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <!--
+    ================================================================
+     GUIA RÁPIDO DE EDIÇÃO MANUAL
+    ================================================================
+     - Procure (Ctrl+F) por "EDITAR:" para pular direto para cada
+       ponto que pode ser alterado com segurança.
+     - Textos: altere só o que está ENTRE as tags (ex.: <h3>TEXTO</h3>).
+       Não apague os sinais < >, as aspas nem o "class=...".
+     - Imagens: altere o valor de src="..." para o nome do novo arquivo.
+       O arquivo precisa estar na MESMA PASTA deste HTML, e o nome
+       precisa ser idêntico (maiúsculas, minúsculas e extensão:
+       "Aluno3.jpeg" é diferente de "aluno3.jpg").
+     - Ícones: são da Font Awesome. Para trocar, mude a classe
+       (ex.: "fa-solid fa-guitar"). Lista: https://fontawesome.com/icons
+     - Links: altere o valor de href="...".
+     - Cores: mude no bloco tailwind.config logo abaixo e a página
+       inteira acompanha.
+    ================================================================
+    -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- EDITAR: título que aparece na aba do navegador e no Google -->
+    <title>Moyz Henrique | Aulas de Guitarra, Violão e Baixo</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        /* Configuração personalizada do Tailwind para refletir a identidade visual do Metal Extremo:
+           - Cores primárias baseadas em preto absoluto (rockdark) e cinzas metálicos (rockcard).
+           - Destaques em vermelho agressivo (rockred) e prata/cinza claro para contraste. */
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        /* EDITAR: troque os códigos HEX abaixo para mudar as cores do site inteiro */
+                        rockdark: '#050507', /* Fundo preto profundo e sóbrio */
+                        rockcard: '#0e0e12', /* Fundo de cartões em cinza ultra escuro */
+                        rockred: '#dc2626',  /* Vermelho vibrante para energia e destaque */
+                        rocksilver: '#9ca3af', /* Prata/cinza metálico para tipografia secundária */
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome para ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter para legibilidade impecável nas seções de conteúdo -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body class="bg-rockdark text-gray-100 font-sans antialiased selection:bg-rockred selection:text-white">
+
+    <!-- Header / Navbar Fixa com efeito de desfoque (Glassmorphism sombrio) -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-rockdark/90 backdrop-blur-md border-b border-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Logotipo com estilo agressivo e marcante -->
+            <a href="#" class="text-2xl font-black tracking-wider flex items-center gap-2 group">
+                <span class="text-rockred group-hover:scale-110 transition-transform"><i class="fa-solid fa-guitar"></i></span>
+                <!-- EDITAR: nome do logotipo. "MOYZ" fica branco e "HENRIQUE" fica prata -->
+                <span class="tracking-widest">MOYZ <span class="text-rocksilver">HENRIQUE</span></span>
+            </a>
+            
+            <!-- Navegação Desktop -->
+            <nav class="hidden md:flex items-center gap-8 font-medium text-sm uppercase tracking-wider">
+                <!-- EDITAR: itens do menu. O href="#..." precisa ser igual ao id="..." da seção de destino (ex.: href="#galeria" leva até id="galeria") -->
+                <a href="#sobre" class="hover:text-rockred transition-colors">Sobre</a>
+                <a href="#metodo" class="hover:text-rockred transition-colors">O Método</a>
+                <a href="#midia" class="hover:text-rockred transition-colors">Mídia & Som</a>
+                <a href="#galeria" class="hover:text-rockred transition-colors">Galeria</a>
+                <!-- EDITAR: botão do topo. Hoje leva para a seção de contato (#contato). Para abrir o WhatsApp direto, troque o href pelo link wa.me da seção de contato -->
+                <!-- Botão de Ação Destacado em Vermelho -->
+                <a href="#contato" class="bg-rockred hover:bg-red-700 text-white px-5 py-2.5 rounded-xl font-bold shadow-lg shadow-rockred/30 transition-all transform hover:-translate-y-0.5">
+                    <i class="fa-brands fa-whatsapp mr-2"></i> Agende sua Aula
+                </a>
+            </nav>
+
+            <!-- Botão Menu Mobile -->
+            <button id="menu-btn" class="md:hidden text-2xl text-gray-300 hover:text-white focus:outline-none">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Menu Mobile Dropdown -->
+        <!-- EDITAR: menu do celular. Se adicionar ou remover um item no menu acima, repita a mudança aqui também -->
+        <div id="mobile-menu" class="hidden md:hidden bg-rockcard border-b border-gray-900 px-4 pt-2 pb-6 space-y-3">
+            <a href="#sobre" class="block py-2 text-gray-300 hover:text-rockred uppercase text-sm font-semibold">Sobre</a>
+            <a href="#metodo" class="block py-2 text-gray-300 hover:text-rockred uppercase text-sm font-semibold">O Método</a>
+            <a href="#midia" class="block py-2 text-gray-300 hover:text-rockred uppercase text-sm font-semibold">Mídia & Som</a>
+            <a href="#galeria" class="block py-2 text-gray-300 hover:text-rockred uppercase text-sm font-semibold">Galeria</a>
+            <a href="#contato" class="block text-center bg-rockred text-white py-3 rounded-xl font-semibold shadow-lg shadow-rockred/30 mt-2">
+                <i class="fa-brands fa-whatsapp mr-2"></i> Agende sua Aula
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section: Impacto visual imediato com iluminação dramática (Low Key) e contrastes em vermelho -->
+    <section class="relative min-h-screen flex items-center justify-center pt-24 pb-16 overflow-hidden bg-gradient-to-b from-rockdark via-[#09090c] to-rockdark">
+        <!-- Efeitos de iluminação de fundo (Glow atmosférico em vermelho e cinza metálico) -->
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-rockred/10 rounded-full blur-[140px] pointer-events-none"></div>
+        <div class="absolute bottom-10 right-10 w-[350px] h-[350px] bg-gray-700/10 rounded-full blur-[120px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Coluna de Texto Principal -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 bg-rockcard border border-gray-800 px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest text-rocksilver">
+                        <!-- EDITAR: selo pequeno acima do título -->
+                        <i class="fa-solid fa-fire text-rockred"></i> Professor & Músico Profissional
+                    </div>
+                    
+                    <!-- EDITAR: título principal. A palavra dentro do <span> recebe o efeito degradê branco > vermelho -->
+                    <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-none uppercase">
+                        Domina a <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-300 to-rockred">Guitarra</span>, Violão e Baixo
+                    </h1>
+                    
+                    <p class="text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
+                        <!-- EDITAR: texto de apresentação abaixo do título. <strong> deixa a palavra em destaque -->
+                        Aulas particulares personalizadas com <strong class="text-white">Moyz Henrique</strong>. Anos de estrada, passagens por bandas de metal extremo e vivência de palco direto para a sua evolução musical.
+                    </p>
+
+                    <!-- Botões de Chamada para Ação (CTA) -->
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+                        <!-- EDITAR: botão principal. Troque href="#contato" pelo link wa.me para abrir o WhatsApp direto -->
+                        <a href="#contato" class="w-full sm:w-auto bg-rockred hover:bg-red-700 text-white font-bold px-8 py-4 rounded-2xl shadow-xl shadow-rockred/30 flex items-center justify-center gap-3 transition-all transform hover:-translate-y-1 text-lg">
+                            <i class="fa-brands fa-whatsapp text-2xl"></i> Agendar Aula via WhatsApp
+                        </a>
+                        <!-- EDITAR: link do Instagram (href) e o @ exibido no botão -->
+                        <a href="https://www.instagram.com/moyzhenrique/" target="_blank" class="w-full sm:w-auto bg-rockcard hover:bg-gray-900 border border-gray-800 text-white font-semibold px-6 py-4 rounded-2xl flex items-center justify-center gap-3 transition-all text-lg">
+                            <i class="fa-brands fa-instagram text-rockred text-xl"></i> @moyzhenrique
+                        </a>
+                    </div>
+
+                    <!-- EDITAR: os 3 diferenciais com ícone de check. Para adicionar mais um, copie um bloco <div class="flex items-center gap-2">...</div> inteiro -->
+                    <!-- Diferenciais rápidos -->
+                    <div class="pt-6 flex flex-wrap items-center justify-center lg:justify-start gap-6 text-sm text-gray-400 font-medium">
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-check text-rockred"></i> Iniciante ao Avançado
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-check text-rockred"></i> Presencial & Online
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-check text-rockred"></i> Foco Prático
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Coluna do Card do Professor (Estética Low Key / Retrato de Estúdio) -->
+                <div class="lg:col-span-5 flex justify-center">
+                    <div class="relative w-full max-w-md">
+                        <div class="absolute -inset-1 bg-gradient-to-r from-rockred to-gray-800 rounded-3xl blur-lg opacity-30"></div>
+                        <div class="relative bg-rockcard border border-gray-800 rounded-3xl overflow-hidden shadow-2xl p-4">
+                            <!-- Foto de perfil com tom sóbrio e acabamento refinado -->
+                            <!-- EDITAR: FOTO PRINCIPAL DO PROFESSOR
+                                 - src: nome do arquivo da foto (ex.: src="Equipamentos.png").
+                                   ATENÇÃO: o link atual é uma miniatura do Google, troque por uma foto própria.
+                                 - h-[420px]: altura da foto. Aumente ou diminua o número.
+                                 - grayscale: deixa em preto e branco. Remova a palavra para mostrar colorida.
+                                 - Para escolher a parte da foto que aparece, adicione object-top ou object-[center_20%]
+                                   (quanto menor a %, mais a foto "sobe"). -->
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpPhQ5n4bSsTWvSsb7EjbKqnes6DWHBdKg9gc_gRTuYNGVKc3J" alt="Moyz Henrique" class="w-full h-[420px] object-cover rounded-2xl shadow-inner grayscale contrast-125 hover:grayscale-0 transition-all duration-500">
+                            <div class="p-4 space-y-2">
+                                <div class="flex justify-between items-center">
+                                    <!-- EDITAR: nome e etiqueta vermelha do cartão da foto -->
+                                    <h3 class="text-xl font-bold text-white tracking-wide">Moyz Henrique</h3>
+                                    <span class="bg-rockred/20 text-rockred border border-rockred/30 text-xs px-3 py-1 rounded-full font-bold uppercase">Guitarrista</span>
+                                </div>
+                                <!-- EDITAR: mini biografia abaixo da foto -->
+                                <p class="text-sm text-gray-400">Guitarrista profissional, compositor e integrante da banda <strong class="text-gray-200">Necropsy Room</strong>.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Sobre o Professor / Currículo Sólido -->
+    <section id="sobre" class="py-24 bg-rockcard/40 border-y border-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
+                <!-- EDITAR: cabeçalho da seção Sobre. Linha 1: subtítulo vermelho pequeno. Linha 2: título (o <span> fica vermelho). Linha 3: texto de apoio -->
+                <span class="text-rockred font-bold uppercase tracking-widest text-xs">Trajetória e Atitude</span>
+                <h2 class="text-3xl sm:text-4xl font-black uppercase tracking-tight">Experiência de Estrada e <span class="text-rockred">Música Autêntica</span></h2>
+                <p class="text-gray-400 text-lg">Um currículo sólido construído nos palcos do rock underground e em anos dedicados ao ensino musical de alto nível.</p>
+            </div>
+
+            <!-- Grid de Pilares Profissionais -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- EDITAR: nos 3 cartões abaixo, troque o ícone (<i class="...">), o título (<h3>) e o texto (<p>) -->
+                <!-- Cartão 1 -->
+                <div class="bg-rockcard border border-gray-800 p-8 rounded-3xl space-y-4 hover:border-rockred/50 transition-all group">
+                    <div class="w-14 h-14 bg-rockred/10 border border-rockred/30 rounded-2xl flex items-center justify-center text-rockred text-2xl group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-guitar"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white uppercase tracking-wide">Múltiplas Bandas de Rock</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Ampla trajetória em bandas nacionais e internacionais, somando centenas de horas de palco, além de sólida experiência em gravações de estúdio, turnês e grandes festivais.
+                    </p>
+                </div>
+
+                <!-- Cartão 2 -->
+                <div class="bg-rockcard border border-gray-800 p-8 rounded-3xl space-y-4 hover:border-rockred/50 transition-all group">
+                    <div class="w-14 h-14 bg-rockred/10 border border-rockred/30 rounded-2xl flex items-center justify-center text-rockred text-2xl group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-music"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white uppercase tracking-wide">Trabalho Autoral Ativo</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Atualmente na linha de frente da aclamada banda <strong>Necropsy Room</strong>, produzindo e executando música autoral pesada, técnica e visceral.
+                    </p>
+                </div>
+
+                <!-- Cartão 3 -->
+                <div class="bg-rockcard border border-gray-800 p-8 rounded-3xl space-y-4 hover:border-rockred/50 transition-all group">
+                    <div class="w-14 h-14 bg-rockred/10 border border-rockred/30 rounded-2xl flex items-center justify-center text-rockred text-2xl group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white uppercase tracking-wide">Metodologia Direta</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Aulas focadas no que realmente importa: repertório, técnica limpa, improvisação, timbre e timing. Do zero ao solo complexo no seu ritmo.
+                    </p>
+                </div>
+            </div>
+
+            <!-- EDITAR: BLOCO DO DIPLOMA
+                 - Título e texto: <h3> e <p> logo abaixo.
+                 - Imagem: o arquivo "Diploma_Moyz.jpg" aparece em DOIS lugares
+                   (aqui e no "Modal do Diploma", mais abaixo). Se trocar o nome
+                   do arquivo, troque nos dois.
+                 - Para remover o bloco inteiro, apague daqui até o </div> que fecha
+                   antes de "</div></section>", apague também o Modal do Diploma e as
+                   linhas do script marcadas como "Modal do diploma".
+                 - Efeito igual ao da galeria: "grayscale" deixa em preto e branco,
+                   "group-hover:grayscale-0" devolve a cor e "group-hover:scale-105" dá o zoom
+                   quando o mouse passa por cima. O texto que aparece no hover fica no <span> e no <h4>. -->
+            <!-- Formação Acadêmica: diploma do IFG (dados pessoais censurados na imagem) -->
+            <div id="diploma-card" class="mt-8 bg-rockcard border border-gray-800 rounded-3xl p-6 sm:p-10 grid grid-cols-1 lg:grid-cols-5 gap-8 items-center">
+                <div class="lg:col-span-2 space-y-4">
+                    <div class="w-14 h-14 bg-rockred/10 border border-rockred/30 rounded-2xl flex items-center justify-center text-rockred text-2xl">
+                        <i class="fa-solid fa-award"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white uppercase tracking-wide">Licenciado em Música pelo IFG</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Formado em Licenciatura em Música pelo <strong class="text-gray-200">Instituto Federal de Goiás</strong>, Câmpus Goiânia, com conclusão em 2024. Formação pedagógica de nível superior somada à vivência de palco: didática de verdade, aplicada ao instrumento.
+                    </p>
+                    <button type="button" id="diploma-open" class="inline-flex items-center gap-2 text-sm font-semibold text-rocksilver hover:text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-rockred rounded-lg">
+                        <i class="fa-solid fa-magnifying-glass-plus text-rockred"></i> Ver diploma ampliado
+                    </button>
+                </div>
+                <div id="diploma-thumb" role="button" tabindex="0" aria-label="Ampliar diploma" class="lg:col-span-3 group relative bg-rockcard border border-gray-800 rounded-3xl overflow-hidden cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-rockred">
+                    <img src="Diploma_Moyz.jpg" alt="Diploma de Licenciatura em Música do IFG concedido a Moisés Henrique Bernardes da Silva" loading="lazy" class="w-full h-auto grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-rockdark/95 via-rockdark/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+                        <div>
+                            <span class="text-xs uppercase tracking-widest text-rockred font-bold">Formação Acadêmica</span>
+                            <h4 class="text-lg font-bold text-white uppercase">Licenciatura em Música | IFG</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EDITAR: janela que abre ao clicar no diploma. Mantenha o src igual ao da imagem do bloco acima -->
+    <!-- Modal do Diploma -->
+    <div id="diploma-modal" class="hidden fixed inset-0 z-[60] bg-black/90 backdrop-blur-sm items-center justify-center p-4" role="dialog" aria-modal="true" aria-label="Diploma ampliado">
+        <button type="button" id="diploma-close" class="absolute top-4 right-4 w-12 h-12 rounded-full bg-rockcard border border-gray-800 text-white text-xl hover:bg-rockred transition-colors" aria-label="Fechar">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <img src="Diploma_Moyz.jpg" alt="Diploma de Licenciatura em Música do IFG" class="max-w-full max-h-[90vh] rounded-xl shadow-2xl">
+    </div>
+
+    <!-- Seção O Método / Instrumentos -->
+    <section id="metodo" class="py-24 bg-rockdark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <!-- EDITAR: cabeçalho da seção O Método (subtítulo, título e texto) -->
+                    <span class="text-rockred font-bold uppercase tracking-widest text-xs">O que você vai aprender</span>
+                    <h2 class="text-3xl sm:text-4xl font-black uppercase tracking-tight">Especialista nos 3 Pilares das Cordas</h2>
+                    <p class="text-gray-400 leading-relaxed">
+                        Independente se você quer tocar seus riffs favoritos de rock/metal, criar suas próprias linhas de baixo ou dominar o violão acústico, o método se adapta ao seu objetivo pessoal com rigor técnico e didática moderna.
+                    </p>
+                    
+                    <!-- EDITAR: cada instrumento é um bloco <div class="flex items-start ...">. Troque o ícone, o nome (<h4>) e a descrição (<p>). Para adicionar outro, copie um bloco inteiro -->
+                    <!-- Lista de Instrumentos -->
+                    <div class="space-y-4 pt-2">
+                        <div class="flex items-start gap-4 bg-rockcard border border-gray-800 p-4 rounded-2xl hover:border-rockred/40 transition-colors">
+                            <div class="text-rockred text-2xl mt-1"><i class="fa-solid fa-bolt"></i></div>
+                            <div>
+                                <h4 class="font-bold text-white uppercase">Guitarra (Base & Solo)</h4>
+                                <p class="text-sm text-gray-400">Técnicas de palhetada, bends, escalas, harmonia aplicada e timbres.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4 bg-rockcard border border-gray-800 p-4 rounded-2xl hover:border-rockred/40 transition-colors">
+                            <div class="text-rockred text-2xl mt-1"><i class="fa-solid fa-guitar"></i></div>
+                            <div>
+                                <h4 class="font-bold text-white uppercase">Baixo Elétrico</h4>
+                                <p class="text-sm text-gray-400">Groove, fingerstyle, slap, construção de linhas de baixo e peso rítmico.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4 bg-rockcard border border-gray-800 p-4 rounded-2xl hover:border-rockred/40 transition-colors">
+                            <div class="text-rockred text-2xl mt-1"><i class="fa-solid fa-music"></i></div>
+                            <div>
+                                <h4 class="font-bold text-white uppercase">Violão</h4>
+                                <p class="text-sm text-gray-400">Ritmos populares, dedilhados, acompanhamento de voz e repertório variado.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- EDITAR: lista "Para quem é o curso?". Cada <li> é um item. Copie uma linha <li>...</li> para adicionar mais -->
+                <!-- Box Informativo: Para quem é? -->
+                <div class="relative">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-rockred to-gray-800 rounded-3xl blur-md opacity-25"></div>
+                    <div class="relative bg-rockcard border border-gray-800 rounded-3xl p-8 space-y-6">
+                        <h3 class="text-2xl font-bold text-white flex items-center gap-3 uppercase">
+                            <i class="fa-solid fa-list-check text-rockred"></i> Para quem é o curso?
+                        </h3>
+                        <ul class="space-y-4 text-gray-300">
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-rockred"></i> Iniciantes que nunca pegaram em um instrumento.</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-rockred"></i> Intermediários travados que querem destravar a técnica.</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-rockred"></i> Músicos que buscam aperfeiçoamento em rock/metal.</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-rockred"></i> Alunos de todas as idades (com acompanhamento especializado).</li>
+                        </ul>
+                        <div class="pt-4 border-t border-gray-800">
+                            <a href="#contato" class="block text-center bg-rockred hover:bg-red-700 text-white font-bold py-3.5 rounded-xl transition-all shadow-lg shadow-rockred/20 uppercase tracking-wider text-sm">
+                                Quero Começar Agora
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Mídia & Som (Necropsy Room e Produções) -->
+    <section id="midia" class="py-24 bg-rockcard/40 border-y border-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
+                <!-- EDITAR: cabeçalho da seção Mídia & Som -->
+                <span class="text-rockred font-bold uppercase tracking-widest text-xs">Som na Caixa</span>
+                <h2 class="text-3xl sm:text-4xl font-black uppercase tracking-tight">Ouça o Som e a Atitude do Professor</h2>
+                <p class="text-gray-400 text-lg">Confira o trabalho atual na banda <strong class="text-white">Necropsy Room</strong> e o lançamento da música autoral.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Canal YouTube / Necropsy Room -->
+                <div class="bg-rockcard border border-gray-800 p-8 rounded-3xl flex flex-col justify-between space-y-6 hover:border-rockred/60 transition-all group">
+                    <div class="space-y-4">
+                        <div class="w-12 h-12 bg-rockred/10 border border-rockred/30 rounded-2xl flex items-center justify-center text-rockred text-2xl">
+                            <i class="fa-brands fa-youtube"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white uppercase">Banda Atual: Necropsy Room</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            Acompanhe os clipes oficiais, apresentações ao vivo, ensaios e toda a brutalidade e técnica da banda Necropsy Room diretamente no canal do YouTube.
+                        </p>
+                    </div>
+                    <div class="pt-4">
+                        <!-- EDITAR: link do canal do YouTube (href) e o texto do botão -->
+                        <a href="https://www.youtube.com/@NecropsyRoom" target="_blank" class="w-full bg-rockred hover:bg-red-700 text-white font-bold py-3.5 px-6 rounded-2xl flex items-center justify-center gap-3 transition-all shadow-lg shadow-rockred/20">
+                            <i class="fa-brands fa-youtube text-xl"></i> Visitar Canal no YouTube
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Música Autoral -->
+                <div class="bg-rockcard border border-gray-800 p-8 rounded-3xl flex flex-col justify-between space-y-6 hover:border-rockred/60 transition-all group">
+                    <div class="space-y-4">
+                        <div class="w-12 h-12 bg-rockred/10 border border-rockred/30 rounded-2xl flex items-center justify-center text-rockred text-2xl">
+                            <i class="fa-solid fa-compact-disc"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white uppercase">Música Autoral em Destaque</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            Ouça a faixa autoral que expressa toda a identidade musical, timbres refinados e composições autorais criadas por Moyz Henrique.
+                        </p>
+                    </div>
+                    <div class="pt-4">
+                        <!-- EDITAR: link da música autoral (Spotify, YouTube etc.) no href -->
+                        <a href="https://l1nk.dev/t7EyaFi" target="_blank" class="w-full bg-gray-800 hover:bg-gray-700 border border-gray-700 text-white font-bold py-3.5 px-6 rounded-2xl flex items-center justify-center gap-3 transition-all shadow-lg">
+                            <i class="fa-solid fa-headphones text-xl text-rockred"></i> Ouvir Música Autoral
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Galeria de Fotos (Aulas, Palcos e Bastidores) -->
+    <section id="galeria" class="py-24 bg-rockdark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
+                <!-- EDITAR: cabeçalho da Galeria -->
+                <span class="text-rockred font-bold uppercase tracking-widest text-xs">Galeria</span>
+                <h2 class="text-3xl sm:text-4xl font-black uppercase tracking-tight">Momentos de <span class="text-rockred">Aula e Palco</span></h2>
+                <p class="text-gray-400 text-lg">Um pouco da energia das aulas práticas e dos shows ao vivo pelo Brasil.</p>
+            </div>
+
+            <!-- EDITAR: COMO FUNCIONA CADA FOTO DA GALERIA
+                 Cada item é um bloco <div class="group relative ...">...</div> com:
+                 - src="..."          -> nome do arquivo da foto
+                 - alt="..."          -> descrição da foto (acessibilidade e Google)
+                 - object-[center_XX%] -> qual parte da foto aparece no recorte quadrado.
+                                         0% mostra o topo, 50% o meio, 100% a base.
+                                         Se cortar a cabeça de alguém, diminua o número.
+                 - <span>             -> categoria (texto vermelho pequeno)
+                 - <h4>               -> título da foto
+                 O título só aparece quando o mouse passa por cima da foto.
+                 Para ADICIONAR uma foto: copie um bloco inteiro, do comentário "Item X" até o </div> final dele.
+                 Para REMOVER: apague o bloco inteiro.
+                 As fotos placeholder (placehold.co) ainda precisam ser trocadas por fotos reais. -->
+            <!-- Grid de Imagens com Estética Dark / Monocromática com destaque -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- EDITAR: Item 1 | Aulas Particulares (Aluno3.jpeg) -->
+                <!-- Item 1 -->
+                <div class="group relative bg-rockcard border border-gray-800 rounded-3xl overflow-hidden aspect-video sm:aspect-square">
+                    <img src="Aluno3.jpeg" alt="Moyz Henrique com aluno durante aula de guitarra" loading="lazy" class="w-full h-full object-cover object-[center_22%] grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-rockdark/95 via-rockdark/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+                        <div>
+                            <span class="text-xs uppercase tracking-widest text-rockred font-bold">Aulas Particulares</span>
+                            <h4 class="text-lg font-bold text-white uppercase">Foco na técnica e prática</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- EDITAR: Item 2 | Palco (MoyzPalco.png). Se cortar a cabeça, adicione object-[center_20%] na classe da imagem -->
+                <!-- Item 2 -->
+                <div class="group relative bg-rockcard border border-gray-800 rounded-3xl overflow-hidden aspect-video sm:aspect-square">
+                    <img src="MoyzPalco.png" alt="Show ao vivo" class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-rockdark/95 via-rockdark/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+                        <div>
+                            <span class="text-xs uppercase tracking-widest text-rockred font-bold">Apresentação ao Vivo</span>
+                            <h4 class="text-lg font-bold text-white uppercase">Necropsy Room no Palco</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- EDITAR: Item 3 | PLACEHOLDER: troque o src por uma foto real -->
+                <!-- Item 3 -->
+                <div class="group relative bg-rockcard border border-gray-800 rounded-3xl overflow-hidden aspect-video sm:aspect-square">
+                    <img src="https://placehold.co/600x600/0a0a0c/dc2626?text=Aulas+de+Baixo" alt="Aulas de Baixo" class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-rockdark/95 via-rockdark/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+                        <div>
+                            <span class="text-xs uppercase tracking-widest text-rockred font-bold">Baixo & Violão</span>
+                            <h4 class="text-lg font-bold text-white uppercase">Desenvolvimento rítmico</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- EDITAR: Item 4 | PLACEHOLDER: troque o src por uma foto real -->
+                <!-- Item 4 -->
+                <div class="group relative bg-rockcard border border-gray-800 rounded-3xl overflow-hidden aspect-video sm:aspect-square">
+                    <img src="https://placehold.co/600x600/0a0a0c/dc2626?text=Bastidores+Estudio" alt="Estúdio" class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-rockdark/95 via-rockdark/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+                        <div>
+                            <span class="text-xs uppercase tracking-widest text-rockred font-bold">Gravação</span>
+                            <h4 class="text-lg font-bold text-white uppercase">Bastidores de Estúdio</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- EDITAR: Item 5 | Aulas em Conjunto (Aluno8.jpeg) -->
+                <!-- Item 5 -->
+                <div class="group relative bg-rockcard border border-gray-800 rounded-3xl overflow-hidden aspect-video sm:aspect-square">
+                    <img src="Aluno8.jpeg" alt="Moyz Henrique com alunos em aula em conjunto" loading="lazy" class="w-full h-full object-cover object-[center_35%] grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-rockdark/95 via-rockdark/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+                        <div>
+                            <span class="text-xs uppercase tracking-widest text-rockred font-bold">Evolução</span>
+                            <h4 class="text-lg font-bold text-white uppercase">Aulas em Conjunto</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- EDITAR: Item 6 | Equipamentos (Equipamentos.png) -->
+                <!-- Item 6 -->
+                <div class="group relative bg-rockcard border border-gray-800 rounded-3xl overflow-hidden aspect-video sm:aspect-square">
+                    <img src="Equipamentos.png" alt="Equipamentos" class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-rockdark/95 via-rockdark/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+                        <div>
+                            <span class="text-xs uppercase tracking-widest text-rockred font-bold">Setup</span>
+                            <h4 class="text-lg font-bold text-white uppercase">Equipamentos Profissionais</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Contato e Inscrição Final -->
+    <section id="contato" class="py-24 bg-gradient-to-t from-rockdark via-[#09090c] to-rockdark relative">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="bg-rockcard border border-gray-800 rounded-3xl p-8 sm:p-12 shadow-2xl relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-rockred/10 rounded-full blur-3xl pointer-events-none"></div>
+
+                <div class="text-center space-y-3 mb-10">
+                    <span class="text-rockred font-bold uppercase tracking-widest text-sm flex items-center justify-center gap-2">
+                        <i class="fa-brands fa-whatsapp text-xl"></i> Atendimento Direto
+                    </span>
+                    <!-- EDITAR: título e texto da seção de contato -->
+                    <h2 class="text-3xl sm:text-4xl font-black uppercase tracking-tight">Dê o Próximo Passo na Sua Evolução</h2>
+                    <p class="text-gray-400">Entre em contato agora mesmo para consultar horários disponíveis para aulas presenciais ou online.</p>
+                </div>
+
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <!-- EDITAR: LINK DO WHATSAPP
+                         Formato: https://wa.me/55DDDNUMERO?text=MENSAGEM
+                         - 55 = Brasil, 62 = DDD, depois o número. Sem espaços, traços ou parênteses.
+                         - Mensagem pronta: troque cada espaço por %20.
+                         Use este mesmo link nos botões do topo e do início da página, se quiser abrir o WhatsApp direto. -->
+                    <a href="https://wa.me/556281853693?text=Olá%20Moyz,%20gostaria%20de%20saber%20mais%20sobre%20as%20aulas!" target="_blank" class="bg-rockred hover:bg-red-700 text-white font-bold px-8 py-4 rounded-2xl shadow-xl shadow-rockred/30 flex items-center justify-center gap-3 transition-all transform hover:-translate-y-1 text-lg uppercase tracking-wider">
+                        <i class="fa-brands fa-whatsapp text-2xl"></i> Falar no WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer class="bg-rockdark border-t border-gray-900 py-12 text-center text-sm text-gray-500">
+        <div class="max-w-7xl mx-auto px-4 space-y-4">
+            <!-- EDITAR: texto do rodapé (ano, cidade e descrição) -->
+            <p class="font-bold tracking-widest uppercase text-gray-400">Moyz Henrique &copy; 2026 — Todos os direitos reservados.</p>
+            <p class="text-xs">Goiânia - GO | Professor de Guitarra, Violão e Baixo</p>
+        </div>
+    </footer>
+
+    <!-- NÃO PRECISA EDITAR: o script abaixo só faz o menu do celular e o modal do diploma funcionarem. Ele depende dos ids menu-btn, mobile-menu, diploma-open, diploma-thumb, diploma-close e diploma-modal: não renomeie esses ids no HTML -->
+    <!-- Script Simples para o Menu Mobile -->
+    <script>
+        const btn = document.getElementById('menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Modal do diploma
+        const modal = document.getElementById('diploma-modal');
+        const abrir = () => { modal.classList.remove('hidden'); modal.classList.add('flex'); document.body.style.overflow = 'hidden'; };
+        const fechar = () => { modal.classList.add('hidden'); modal.classList.remove('flex'); document.body.style.overflow = ''; };
+        document.getElementById('diploma-open').addEventListener('click', abrir);
+        document.getElementById('diploma-thumb').addEventListener('click', abrir);
+        document.getElementById('diploma-thumb').addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); abrir(); } });
+        document.getElementById('diploma-close').addEventListener('click', fechar);
+        modal.addEventListener('click', (e) => { if (e.target === modal) fechar(); });
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') fechar(); });
+    </script>
+</body>
+</html>
