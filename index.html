@@ -19,8 +19,66 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#090a0c">
-    <!-- EDITAR: título da aba e do Google -->
-    <title>Moyz Henrique | Aulas de Guitarra, Violão e Baixo</title>
+ 
+    <!-- ================= SEO (Google) =================
+         Se um dia o site ganhar domínio próprio (ex.: moyzhenrique.com.br),
+         troque "https://professorguitarra.vercel.app" por ele em TODO este bloco,
+         no robots.txt e no sitemap.xml. -->
+ 
+    <!-- EDITAR: título da aba e do Google (até ~60 caracteres; o começo é o que mais pesa) -->
+    <title>Professor de Guitarra em Goiânia | Moyz Henrique</title>
+ 
+    <!-- EDITAR: texto que aparece embaixo do título no Google (até ~155 caracteres) -->
+    <meta name="description" content="Aulas de guitarra, violão e baixo em Goiânia com Moyz Henrique, licenciado em Música pelo IFG e guitarrista há quase 30 anos. Presencial e online. Agende pelo WhatsApp.">
+ 
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://professorguitarra.vercel.app/">
+ 
+    <!-- Prévia do link quando compartilhado no WhatsApp, Instagram e Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:site_name" content="Moyz Henrique Academia de Guitarra">
+    <meta property="og:title" content="Professor de Guitarra em Goiânia | Moyz Henrique">
+    <meta property="og:description" content="Aulas de guitarra, violão e baixo em Goiânia, do iniciante ao avançado. Presencial e online.">
+    <meta property="og:url" content="https://professorguitarra.vercel.app/">
+    <meta property="og:image" content="https://professorguitarra.vercel.app/img/MoyzDePerfil.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+ 
+    <!-- Dados estruturados: dizem ao Google o que é o negócio, onde fica e como entrar em contato -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "MusicSchool",
+      "name": "Moyz Henrique Academia de Guitarra",
+      "description": "Aulas de guitarra, violão, baixo e teoria musical em Goiânia, presenciais e online.",
+      "url": "https://professorguitarra.vercel.app/",
+      "image": "https://professorguitarra.vercel.app/img/MoyzDePerfil.jpg",
+      "telephone": "+55 62 8185-3693",
+      "foundingDate": "2017",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "R. 1108, Qd 209 - Lt 25 Casa 2",
+        "addressLocality": "Goiânia",
+        "addressRegion": "GO",
+        "postalCode": "74830-330",
+        "addressCountry": "BR"
+      },
+      "areaServed": { "@type": "City", "name": "Goiânia" },
+      "founder": {
+        "@type": "Person",
+        "name": "Moyz Henrique",
+        "jobTitle": "Guitarrista, compositor e professor de música",
+        "alumniOf": "Instituto Federal de Goiás (IFG)"
+      },
+      "sameAs": [
+        "https://www.instagram.com/moyzhenrique/",
+        "https://www.youtube.com/@NecropsyRoom",
+        "https://open.spotify.com/artist/0Wo9fa2YL3yKvEialFiaw2"
+      ]
+    }
+    </script>
+    <!-- ================= FIM DO SEO ================= -->
+ 
     <script src="https://cdn.tailwindcss.com/3.4.17"></script>
     <script>
         tailwind.config = {
@@ -53,7 +111,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sora:wght@400;500;600&display=swap" rel="stylesheet">
-
+ 
     <!-- NÃO PRECISA EDITAR: estilos que o Tailwind não cobre (feixe de luz, tipografia display, botões pílula) -->
     <style>
         /* Responsividade: links do menu não ficam escondidos atrás do topo fixo,
@@ -62,10 +120,10 @@
         html, body { overflow-x: clip; }
         body { font-size: 15px; letter-spacing: -0.01em; -webkit-tap-highlight-color: transparent; }
         h1, h2, h3, p { overflow-wrap: break-word; }
-
+ 
         /* Altura cheia do hero que respeita a barra de endereço do celular */
         .hero-full { min-height: 100vh; min-height: 100svh; }
-
+ 
         /* Tipografia display (Sora no lugar da Esbuild). Nunca abaixo de 28px. */
         .t-display { font-family: 'Sora', 'Inter', sans-serif; font-weight: 500; font-size: clamp(40px, 11vw, 84px); line-height: .95; letter-spacing: -0.05em; }
         .t-section { font-family: 'Sora', 'Inter', sans-serif; font-weight: 500; font-size: clamp(32px, 8vw, 64px); line-height: .98; letter-spacing: -0.045em; }
@@ -74,7 +132,7 @@
             .t-section { font-size: clamp(36px, 5.2vw, 64px); line-height: .95; }
         }
         .t-card    { font-family: 'Sora', 'Inter', sans-serif; font-weight: 500; font-size: 28px; line-height: 1; letter-spacing: -0.04em; }
-
+ 
         /* Botões pílula */
         .btn { display: inline-flex; align-items: center; justify-content: center; gap: .6rem; border-radius: 9999px; font-weight: 500; font-size: 15px; letter-spacing: -0.01em; text-align: center; min-height: 44px; transition: background-color .2s, box-shadow .25s, color .2s, border-color .2s; }
         /* No celular os botões de ação ocupam a largura toda */
@@ -95,12 +153,12 @@
         .btn-whatsapp:hover { background: #1ebe5a; box-shadow: 0 0 28px rgba(37,211,102,.5); }
         .btn-spotify:hover { background: #1db954; color: #000; box-shadow: 0 0 28px rgba(29,185,84,.45); }
         .btn:focus-visible, a:focus-visible, button:focus-visible, [tabindex]:focus-visible { outline: none; box-shadow: 0 0 0 4px rgba(255,255,255,.4); }
-
+ 
         /* Selo/chip: cor da categoria a 12% no fundo */
         .chip { display: inline-flex; align-items: center; gap: 6px; border-radius: 9999px; padding: 4px 12px; font-size: 12px; font-weight: 500; }
         .chip-ember { color: #ff8964; background: rgba(255,137,100,.12); }
         .chip-iris  { color: #7fa2e6; background: rgba(86,131,218,.14); }
-
+ 
         /* O FEIXE AURORA (aparece só uma vez, no topo) — funciona como luz de palco sobre a foto */
         .aurora { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
         .aurora .beam, .aurora .core, .aurora .sun { position: absolute; left: 70%; transform: translateX(-50%); }
@@ -119,18 +177,18 @@
         .aurora .beam, .aurora .core { transform-origin: bottom; animation: lightOn 1.6s cubic-bezier(.2,.7,.2,1) both; }
         .aurora .sun { animation: lightOn 1.6s .3s ease-out both; }
         @media (prefers-reduced-motion: reduce) { .aurora * { animation: none !important; } }
-
+ 
         /* Brilho radial no canto dos cartões */
         .glow-ember, .glow-iris { position: relative; overflow: hidden; isolation: isolate; }
         .glow-ember::before, .glow-iris::before { content: ""; position: absolute; z-index: -1; width: 360px; height: 360px; top: -180px; right: -160px; border-radius: 50%; }
         .glow-ember::before { background: radial-gradient(closest-side, rgba(255,170,129,.35), rgba(255,218,159,.10) 60%, transparent); }
         .glow-iris::before  { background: radial-gradient(closest-side, rgba(86,131,218,.40), rgba(86,131,218,.08) 60%, transparent); }
-
+ 
         /* Contorno em degradê iris → ember (decoração principal do sistema) */
         .stroke-aurora { border: 1px solid transparent; background:
             linear-gradient(#111111, #111111) padding-box,
             linear-gradient(140deg, rgba(86,131,218,.9), rgba(74,75,80,.4) 45%, rgba(255,137,100,.9)) border-box; }
-
+ 
         /* Apresentação automática da galeria: as fotos se sobrepõem e trocam com esmaecimento.
            Sem zoom, para a foto aparecer sempre no tamanho real (nítida). */
         .slide { position: absolute; inset: 0; margin: 0; opacity: 0; visibility: hidden; transition: opacity 1s ease, visibility 0s linear 1s; }
@@ -142,7 +200,7 @@
         .slide figcaption { z-index: 2; opacity: 0; transform: translateY(8px); transition: opacity .6s .4s, transform .6s .4s; }
         .slide.is-active figcaption { opacity: 1; transform: none; }
         #galeria-slider:focus-visible { outline: none; box-shadow: 0 0 0 4px rgba(255,255,255,.4); }
-
+ 
         /* Indicadores: o ativo vira uma barrinha que enche durante o tempo da foto */
         .dot { padding: 12px 3px; }
         .dot span { display: block; position: relative; overflow: hidden; width: 8px; height: 8px; border-radius: 9999px; background: rgba(255,255,255,.25); transition: width .3s, background-color .3s; }
@@ -154,18 +212,18 @@
         @media (prefers-reduced-motion: reduce) {
             .slide, .slide figcaption { transition: none !important; transform: none !important; }
         }
-
+ 
         /* Telas de toque não têm "passar o mouse": mostra as fotos já coloridas */
         @media (hover: none) {
             .grayscale { --tw-grayscale: grayscale(0) !important; filter: none !important; }
         }
-
+ 
         /* Celulares em pé: brilhos menores e espaçamentos mais enxutos */
         @media (max-width: 639px) {
             .glow-ember::before, .glow-iris::before { width: 260px; height: 260px; top: -130px; right: -120px; }
             .aurora .sun { width: 600px; height: 420px; bottom: -240px; }
         }
-
+ 
         /* Celular deitado (pouca altura): o hero não força ocupar a tela inteira */
         @media (max-height: 500px) and (orientation: landscape) {
             .hero-full { min-height: auto; }
@@ -173,7 +231,7 @@
     </style>
 </head>
 <body class="bg-void text-white font-sans antialiased selection:bg-iris selection:text-white">
-
+ 
     <!-- ================= TOPO ================= -->
     <header id="topo" class="fixed top-0 inset-x-0 z-50 transition-colors duration-300">
         <div class="max-w-[1200px] mx-auto px-5 sm:px-8 h-[72px] flex items-center justify-between">
@@ -182,7 +240,7 @@
                 <span class="w-8 h-8 rounded-full bg-white/10 border border-white/15 grid place-items-center text-[13px]"><i class="fa-solid fa-guitar"></i></span>
                 Moyz Henrique
             </a>
-
+ 
             <nav class="hidden md:flex items-center gap-7 text-[14px] text-white/80">
                 <!-- EDITAR: itens do menu (href="#..." igual ao id da seção) -->
                 <a href="#sobre" class="hover:text-white transition-colors">Sobre</a>
@@ -195,12 +253,12 @@
                 <a href="https://www.instagram.com/moyzhenrique/" target="_blank" rel="noopener" class="btn btn-ghost !py-2 !px-5 !text-[14px]"><i class="fa-brands fa-instagram"></i> Instagram</a>
                 <a href="https://wa.me/556281853693?text=Olá%20Moyz,%20gostaria%20de%20saber%20mais%20sobre%20as%20aulas!" target="_blank" rel="noopener" class="btn btn-agendar !py-2.5 !px-5 !text-[14px]">Agendar aula</a>
             </div>
-
+ 
             <button id="menu-btn" class="md:hidden w-10 h-10 rounded-full border border-edge grid place-items-center text-white" aria-label="Abrir menu" aria-expanded="false">
                 <i class="fa-solid fa-bars"></i>
             </button>
         </div>
-
+ 
         <!-- EDITAR: menu do celular (repita aqui o que mudar no menu acima) -->
         <div id="mobile-menu" class="hidden md:hidden bg-void/95 backdrop-blur-md border-b border-edge px-5 pt-2 pb-6 space-y-1 max-h-[calc(100vh-72px)] overflow-y-auto">
             <a href="#sobre" class="block py-3 text-white/80">Sobre</a>
@@ -210,19 +268,19 @@
             <a href="https://wa.me/556281853693?text=Olá%20Moyz,%20gostaria%20de%20saber%20mais%20sobre%20as%20aulas!" target="_blank" rel="noopener" class="btn btn-agendar w-full mt-3"><i class="fa-brands fa-whatsapp"></i> Agendar aula</a>
         </div>
     </header>
-
+ 
     <!-- ================= HERO: feixe aurora como luz de palco ================= -->
     <section class="hero-full relative flex items-center pt-24 sm:pt-28 pb-16 sm:pb-20 overflow-hidden bg-void">
         <div class="aurora" aria-hidden="true"><div class="beam"></div><div class="core"></div><div class="sun"></div></div>
-
+ 
         <div class="relative z-10 max-w-[1200px] mx-auto px-5 sm:px-8 w-full grid grid-cols-1 lg:grid-cols-12 gap-10 sm:gap-14 items-center">
             <div class="lg:col-span-7 lg:self-start lg:pt-8">
                 <!-- EDITAR: selo acima do título -->
                 <span class="chip chip-ember"><span class="w-1.5 h-1.5 rounded-full bg-ember"></span> Professor e músico profissional em Goiânia</span>
-
+ 
                 <!-- EDITAR: título principal -->
                 <h1 class="t-display mt-7">Aulas de guitarra, violão, baixo e teoria musical com Moyz Henrique</h1>
-
+ 
                 <!-- EDITAR: texto de apresentação -->
                 <p class="mt-6 sm:mt-7 text-[16px] sm:text-[18px] leading-[1.55] text-ash max-w-[34rem]">
                     Aprenda com quem vive a música há quase três décadas, dentro e fora dos palcos. Autoridade, experiência, atitude e personalidade.
@@ -230,14 +288,14 @@
                 <p class="mt-4 text-[16px] sm:text-[18px] leading-[1.55] text-white font-medium max-w-[34rem]">
                     Forje sua técnica. Desenvolva seu estilo. Domine seu instrumento.
                 </p>
-
+ 
                 <div class="mt-9 flex flex-col sm:flex-row gap-3">
                     <!-- EDITAR: botão principal (troque href pelo link wa.me para abrir o WhatsApp direto) -->
                     <a href="https://wa.me/556281853693?text=Olá%20Moyz,%20gostaria%20de%20saber%20mais%20sobre%20as%20aulas!" target="_blank" rel="noopener" class="btn btn-whatsapp"><i class="fa-brands fa-whatsapp text-lg"></i> Agendar aula pelo WhatsApp</a>
                     <!-- EDITAR: Instagram -->
                     <a href="https://www.instagram.com/moyzhenrique/" target="_blank" rel="noopener" class="btn btn-ghost"><i class="fa-brands fa-instagram"></i> @moyzhenrique</a>
                 </div>
-
+ 
                 <!-- EDITAR: diferenciais -->
                 <ul class="mt-8 sm:mt-10 flex flex-wrap gap-x-7 gap-y-3 text-[14px] text-smoke">
                     <li class="flex items-center gap-2"><i class="fa-solid fa-check text-ember text-xs"></i> Do iniciante ao avançado</li>
@@ -245,7 +303,7 @@
                     <li class="flex items-center gap-2"><i class="fa-solid fa-check text-ember text-xs"></i> Foco prático</li>
                 </ul>
             </div>
-
+ 
             <!-- Foto do professor, "flutuando" sobre o feixe (como o print de produto no Huly) -->
             <div class="lg:col-span-5 flex justify-center lg:justify-end">
                 <figure class="w-full max-w-[340px] sm:max-w-[400px]">
@@ -272,7 +330,7 @@
             </div>
         </div>
     </section>
-
+ 
     <!-- ================= SOBRE (faixa CLARA) ================= -->
     <section id="sobre" class="bg-mist text-ink py-16 sm:py-28">
         <div class="max-w-[1200px] mx-auto px-5 sm:px-8">
@@ -281,7 +339,7 @@
                 <h2 class="t-section lg:col-span-7">Experiência de estrada e música autêntica.</h2>
                 <p class="lg:col-span-5 text-[17px] leading-[1.55] text-obsidian">Um currículo construído nos palcos do rock underground e em anos dedicados ao ensino musical de alto nível.</p>
             </div>
-
+ 
             <!-- EDITAR: os 3 cartões (ícone, título e texto) -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <article class="glow-ember bg-card text-white border border-edge rounded-xl p-6 sm:p-7 flex flex-col gap-8 sm:gap-10 sm:min-h-[300px]">
@@ -306,7 +364,7 @@
                     </div>
                 </article>
             </div>
-
+ 
             <!-- EDITAR: BLOCO DO DIPLOMA. O arquivo img/Diploma_Moyz.jpg aparece aqui E no modal mais abaixo: troque nos dois -->
             <div id="diploma-card" class="glow-iris mt-4 bg-card text-white border border-edge rounded-[24px] sm:rounded-[30px] p-5 sm:p-10 grid grid-cols-1 lg:grid-cols-5 gap-8 sm:gap-10 items-center">
                 <div class="lg:col-span-2 space-y-5">
@@ -323,7 +381,7 @@
             </div>
         </div>
     </section>
-
+ 
     <!-- EDITAR: modal do diploma (mesmo src do bloco acima) -->
     <div id="diploma-modal" class="hidden fixed inset-0 z-[60] bg-void/90 backdrop-blur-sm items-center justify-center p-4" role="dialog" aria-modal="true" aria-label="Diploma ampliado">
         <button type="button" id="diploma-close" class="absolute top-[max(1rem,env(safe-area-inset-top))] right-4 z-10 w-12 h-12 rounded-full bg-card border border-edge text-white text-lg hover:bg-white hover:text-void transition-colors" aria-label="Fechar">
@@ -331,7 +389,7 @@
         </button>
         <img src="img/Diploma_Moyz.jpg" alt="Diploma de Licenciatura em Música do IFG" class="max-w-full max-h-[90vh] rounded-xl shadow-[0_6px_25px_rgba(0,0,0,.5)]">
     </div>
-
+ 
     <!-- ================= O MÉTODO (faixa ESCURA) ================= -->
     <section id="metodo" class="bg-void py-16 sm:py-28">
         <div class="max-w-[1200px] mx-auto px-5 sm:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
@@ -341,7 +399,7 @@
                 <p class="mt-5 sm:mt-6 text-[16px] sm:text-[17px] leading-[1.55] text-ash max-w-[36rem]">
                     Seja para tocar seus riffs favoritos de rock e metal, criar linhas de baixo ou dominar o violão acústico, o método se adapta ao seu objetivo, com rigor técnico e didática moderna.
                 </p>
-
+ 
                 <!-- EDITAR: instrumentos (ícone, nome, descrição). Copie um <div class="py-6 ..."> inteiro para adicionar -->
                 <div class="mt-10 border-t border-edge">
                     <div class="py-6 border-b border-edge grid grid-cols-[40px_1fr] gap-4">
@@ -367,7 +425,7 @@
                     </div>
                 </div>
             </div>
-
+ 
             <!-- EDITAR: "Para quem é o curso?" (cada <li> é um item) -->
             <aside class="lg:col-span-5 lg:sticky lg:top-28 stroke-aurora rounded-[24px] sm:rounded-[30px] p-6 sm:p-10">
                 <h3 class="font-display font-medium text-[26px] sm:text-[32px] leading-none tracking-[-0.045em]">Para quem é</h3>
@@ -381,7 +439,7 @@
             </aside>
         </div>
     </section>
-
+ 
     <!-- ================= MÍDIA E SOM (faixa CLARA, tom linho) ================= -->
     <section id="midia" class="bg-linen text-ink py-16 sm:py-28">
         <div class="max-w-[1200px] mx-auto px-5 sm:px-8">
@@ -390,7 +448,7 @@
                 <h2 class="t-section lg:col-span-7">Ouça o som do professor.</h2>
                 <p class="lg:col-span-5 text-[17px] leading-[1.55] text-obsidian">Confira o trabalho atual na banda <strong class="font-semibold text-ink">Necropsy Room</strong> e a música autoral mais recente.</p>
             </div>
-
+ 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <article class="glow-iris bg-card text-white border border-edge rounded-xl p-6 sm:p-8 flex flex-col gap-8 sm:gap-12 sm:min-h-[320px]">
                     <i class="fa-brands fa-youtube text-[22px] text-white/80"></i>
@@ -413,7 +471,7 @@
             </div>
         </div>
     </section>
-
+ 
     <!-- ================= GALERIA (faixa ESCURA) ================= -->
     <section id="galeria" class="bg-void py-16 sm:py-28">
         <div class="max-w-[1200px] mx-auto px-5 sm:px-8">
@@ -424,7 +482,7 @@
                 <h2 class="t-section">Momentos de aula e palco.</h2>
                 <p class="mt-5 sm:mt-6 text-[16px] sm:text-[17px] leading-[1.55] text-ash max-w-[30rem]">Um pouco da energia das aulas práticas e dos shows ao vivo pelo Brasil.</p>
             </div>
-
+ 
             <!-- EDITAR: COMO FUNCIONA A APRESENTAÇÃO DE FOTOS
                  Cada <figure class="slide"> é uma foto: src (arquivo), alt (descrição),
                  object-[center_XX%] (recorte: 0% topo, 100% base), .chip (categoria) e <p> (título).
@@ -524,7 +582,7 @@
                     </figcaption>
                 </figure>
             </div>
-
+ 
             <!-- Indicadores da apresentação (criados pelo script), alinhados à direita -->
             <div class="mt-4 flex justify-end">
                 <div id="galeria-dots" class="flex items-center gap-1"></div>
@@ -533,7 +591,7 @@
             </div>
         </div>
     </section>
-
+ 
     <!-- ================= CONTATO ================= -->
     <section id="contato" class="bg-void pb-16 sm:pb-28">
         <div class="max-w-[1200px] mx-auto px-5 sm:px-8">
@@ -556,7 +614,7 @@
             </div>
         </div>
     </section>
-
+ 
     <footer class="bg-void border-t border-edge/60 pt-10 pb-[max(2.5rem,env(safe-area-inset-bottom))]">
         <div class="max-w-[1200px] mx-auto px-5 sm:px-8">
             <!-- EDITAR: contatos do rodapé (WhatsApp usa o mesmo link wa.me do botão de contato; localização é o link do Google Maps) -->
@@ -580,7 +638,7 @@
                     </a>
                 </li>
             </ul>
-
+ 
             <!-- EDITAR: rodapé -->
             <div class="mt-8 pt-6 border-t border-edge/60 flex flex-col sm:flex-row gap-2 justify-between text-[13px] text-smoke">
                 <p>Moyz Henrique © 2026. Todos os direitos reservados.</p>
@@ -592,7 +650,7 @@
             </div>
         </div>
     </footer>
-
+ 
     <!-- NÃO PRECISA EDITAR: menu do celular, topo com desfoque ao rolar e modal do diploma.
          Depende dos ids topo, menu-btn, mobile-menu, video-apresentacao, diploma-open, diploma-thumb, diploma-close e diploma-modal -->
     <script>
@@ -611,7 +669,7 @@
         menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => definirMenu(false)));
         // Fecha o menu ao virar o celular / aumentar a tela até o tamanho de desktop
         window.matchMedia('(min-width: 768px)').addEventListener('change', (e) => { if (e.matches) definirMenu(false); });
-
+ 
         // Vídeo de apresentação: ao terminar, sai da tela cheia e volta para a foto de capa (poster)
         const videoApresentacao = document.getElementById('video-apresentacao');
         videoApresentacao.addEventListener('ended', () => {
@@ -619,7 +677,7 @@
             if (videoApresentacao.webkitDisplayingFullscreen) videoApresentacao.webkitExitFullscreen();
             videoApresentacao.load();
         });
-
+ 
         // Topo transparente sobre o hero, com desfoque depois de rolar (ou com o menu aberto)
         const topo = document.getElementById('topo');
         const marcarTopo = () => {
@@ -631,7 +689,7 @@
         };
         window.addEventListener('scroll', marcarTopo, { passive: true });
         marcarTopo();
-
+ 
         // Modal do diploma
         const modal = document.getElementById('diploma-modal');
         const abrir = () => { modal.classList.remove('hidden'); modal.classList.add('flex'); document.body.style.overflow = 'hidden'; };
@@ -643,7 +701,7 @@
         document.getElementById('diploma-close').addEventListener('click', fechar);
         modal.addEventListener('click', (e) => { if (e.target === modal) fechar(); });
         document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { fechar(); definirMenu(false); } });
-
+ 
         // Apresentação automática da galeria. A troca acontece quando a barrinha do indicador
         // termina de encher, então pausar a barra também pausa a apresentação.
         const show = document.getElementById('galeria-show');
